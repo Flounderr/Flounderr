@@ -1,19 +1,31 @@
 # Flounder
 Flounder is an app which allows users to click pictures of flyers and detects the date and details of the event, adding them to calendar and Google calender.
 
-##User stories
--The following are **reqired** functionality
+## User stories
+-The following are **reqired** functionalities
 
-- [ ] Users can click a picture of a flyer
-- [ ] App can detect the date and event name on the flyer as well as the location
-- [ ] App adds the event to the calendar and google calendar
+ [ ] Users can take a picture of a flyer
+ [ ] App can detect the date and event name on the flyer as well as the location with some accuracy
+ [ ] Users can edit the event details after the details are detected
+ [ ] App adds the event to the calendar and google calendar
 
--The following are **optional** functionality
+-The following are **optional** functionalities
 
-- [ ] Ability to post events to the app
-- [ ] Carpool button allows user to send carpool requests to event poster
-- [ ] User can choose how many carpool requests they'd like to allow
-- [ ] Carpool button greys out after 1-5 carpool requests are accepted
+ [ ] Ability to post events to the app
+ [ ] Carpool button allows user to send carpool requests to event poster
+ [ ] User can choose how many carpool requests they'd like to allow
+ [ ] Carpool button greys out after 1-5 carpool requests are accepted
+
+## Deliverables
+Columns in Parse:
+ - Username within the app
+ - Username for Google account
+APIs we are using:
+ - Parse
+ - Google Calendar
+ - Tesseract
+Model classes we need so far:
+ - User
 
 ## Video Walkthrough 
 

@@ -7,15 +7,21 @@
 //
 
 import UIKit
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        Parse.initializeWithConfiguration(
+            ParseClientConfiguration(block: { (configuration:ParseMutableClientConfiguration) -> Void in
+                configuration.applicationId = "flounderr"
+                configuration.clientKey = "asldjkfsladkfjasld2394i2roiejfaklsvdmvs!!al03fj"
+                configuration.server = "https://powerful-beyond-43573.herokuapp.com/parse"
+            })
+        )
         return true
     }
 
