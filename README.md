@@ -4,6 +4,7 @@ Flounder is an app which allows users to click pictures of flyers and detects th
 ## User stories
 -The following are **required** functionalities
 
+ - [x] Users can log in 
  - [ ] Users can take a picture of a flyer
  - [ ] App can detect the date and event name on the flyer as well as the location with some accuracy
  - [ ] Users can edit the event details after the details are detected
@@ -33,7 +34,7 @@ Model classes we need so far:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='link to gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/j2SL1BG.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
