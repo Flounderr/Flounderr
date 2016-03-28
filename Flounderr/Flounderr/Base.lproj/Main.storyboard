@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -64,10 +64,10 @@
             </objects>
             <point key="canvasLocation" x="238" y="340"/>
         </scene>
-        <!--View Controller-->
+        <!--Tesseract View Controller-->
         <scene sceneID="R7t-KB-cBs">
             <objects>
-                <viewController id="3uK-Sv-wpA" sceneMemberID="viewController">
+                <viewController id="3uK-Sv-wpA" customClass="tesseractViewController" customModule="Flounderr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bIi-Pq-xpB"/>
                         <viewControllerLayoutGuide type="bottom" id="Vvb-T0-Wgt"/>
@@ -75,8 +75,26 @@
                     <view key="view" contentMode="scaleToFill" id="gfK-Pe-lvd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xbc-7Z-JGm">
+                                <rect key="frame" x="0.0" y="397" width="320" height="30"/>
+                                <state key="normal" title="Take Picture or Upload from Camera"/>
+                                <connections>
+                                    <action selector="takePhoto:" destination="3uK-Sv-wpA" eventType="touchUpInside" id="KYO-qf-rAV"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Text View to display Tesseract text until we figure out a way to look through an select particular text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lI0-Mk-Qgr">
+                                <rect key="frame" x="0.0" y="49" width="320" height="340"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="recognisedTextView" destination="lI0-Mk-Qgr" id="wmV-ym-Nv1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0PE-op-PcE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

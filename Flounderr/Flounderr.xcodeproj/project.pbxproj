@@ -14,6 +14,11 @@
 		4E5B86D11C8927750017FC24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E5B86CF1C8927750017FC24 /* Main.storyboard */; };
 		4E5B86D31C8927750017FC24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E5B86D21C8927750017FC24 /* Assets.xcassets */; };
 		4E5B86D61C8927750017FC24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E5B86D41C8927750017FC24 /* LaunchScreen.storyboard */; };
+		A7ACF4BD1CA2524400F0943D /* tesseractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ACF4BC1CA2524400F0943D /* tesseractViewController.swift */; };
+		A7F763C41CA8F0810062A51D /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F763C31CA8F0810062A51D /* TesseractOCR.framework */; };
+		A7F763C61CA8F0A80062A51D /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F763C51CA8F0A80062A51D /* libstdc++.tbd */; };
+		A7F763C81CA8F0FA0062A51D /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F763C71CA8F0FA0062A51D /* CoreImage.framework */; };
+		A7F763CE1CA8F56C0062A51D /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = A7F763CD1CA8F56C0062A51D /* tessdata */; };
 		E112B9849B7C5C564BD250A6 /* Pods_Flounderr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77D382DDFDE6D511889A8403 /* Pods_Flounderr.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +35,12 @@
 		4E5B86D71C8927750017FC24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77D382DDFDE6D511889A8403 /* Pods_Flounderr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flounderr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92842B18808107C510F7B473 /* Pods-Flounderr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flounderr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flounderr/Pods-Flounderr.debug.xcconfig"; sourceTree = "<group>"; };
+		A7ACF4BC1CA2524400F0943D /* tesseractViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tesseractViewController.swift; sourceTree = "<group>"; };
+		A7F763C31CA8F0810062A51D /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = "<group>"; };
+		A7F763C51CA8F0A80062A51D /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		A7F763C71CA8F0FA0062A51D /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		A7F763C91CA8F5380062A51D /* Flounderr-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flounderr-Bridging-Header.h"; sourceTree = "<group>"; };
+		A7F763CD1CA8F56C0062A51D /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +48,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7F763C81CA8F0FA0062A51D /* CoreImage.framework in Frameworks */,
+				A7F763C61CA8F0A80062A51D /* libstdc++.tbd in Frameworks */,
+				A7F763C41CA8F0810062A51D /* TesseractOCR.framework in Frameworks */,
 				E112B9849B7C5C564BD250A6 /* Pods_Flounderr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,6 +88,7 @@
 		4E5B86CA1C8927750017FC24 /* Flounderr */ = {
 			isa = PBXGroup;
 			children = (
+				A7F763CD1CA8F56C0062A51D /* tessdata */,
 				4E5B86CB1C8927750017FC24 /* AppDelegate.swift */,
 				4E5B86CD1C8927750017FC24 /* ViewController.swift */,
 				4E5B86CF1C8927750017FC24 /* Main.storyboard */,
@@ -82,6 +97,9 @@
 				4E5B86D71C8927750017FC24 /* Info.plist */,
 				4E34A03C1C9B5BCE00E6E406 /* LoginViewController.swift */,
 				4E34A0401C9B60F400E6E406 /* User.swift */,
+				A7ACF4BC1CA2524400F0943D /* tesseractViewController.swift */,
+				A7F763C31CA8F0810062A51D /* TesseractOCR.framework */,
+				A7F763C91CA8F5380062A51D /* Flounderr-Bridging-Header.h */,
 			);
 			path = Flounderr;
 			sourceTree = "<group>";
@@ -89,6 +107,8 @@
 		D21BCA4D08EACD951632DD51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A7F763C71CA8F0FA0062A51D /* CoreImage.framework */,
+				A7F763C51CA8F0A80062A51D /* libstdc++.tbd */,
 				77D382DDFDE6D511889A8403 /* Pods_Flounderr.framework */,
 			);
 			name = Frameworks;
@@ -156,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E5B86D61C8927750017FC24 /* LaunchScreen.storyboard in Resources */,
+				A7F763CE1CA8F56C0062A51D /* tessdata in Resources */,
 				4E5B86D31C8927750017FC24 /* Assets.xcassets in Resources */,
 				4E5B86D11C8927750017FC24 /* Main.storyboard in Resources */,
 			);
@@ -218,6 +239,7 @@
 			files = (
 				4E34A0411C9B60F400E6E406 /* User.swift in Sources */,
 				4E34A03D1C9B5BCE00E6E406 /* LoginViewController.swift in Sources */,
+				A7ACF4BD1CA2524400F0943D /* tesseractViewController.swift in Sources */,
 				4E5B86CE1C8927750017FC24 /* ViewController.swift in Sources */,
 				4E5B86CC1C8927750017FC24 /* AppDelegate.swift in Sources */,
 			);
@@ -331,10 +353,19 @@
 			baseConfigurationReference = 92842B18808107C510F7B473 /* Pods-Flounderr.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Flounderr",
+				);
 				INFOPLIST_FILE = Flounderr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"OTHER_LDFLAGS[arch=*]" = " -lstdc++";
 				PRODUCT_BUNDLE_IDENTIFIER = com.flounderr.Flounderr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Flounderr/Flounderr-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -343,10 +374,18 @@
 			baseConfigurationReference = 0B152EF075E9A7A78514EB25 /* Pods-Flounderr.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Flounderr",
+				);
 				INFOPLIST_FILE = Flounderr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"OTHER_LDFLAGS[arch=*]" = " -lstdc++";
 				PRODUCT_BUNDLE_IDENTIFIER = com.flounderr.Flounderr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Flounderr/Flounderr-Bridging-Header.h";
 			};
 			name = Release;
 		};
