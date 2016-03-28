@@ -5,7 +5,7 @@ Flounder is an app which allows users to click pictures of flyers and detects th
 -The following are **required** functionalities
 
  - [x] Users can log in 
- - [ ] Users can take a picture of a flyer
+ - [x] Users can take a picture of a flyer
  - [ ] App can detect the date and event name on the flyer as well as the location with some accuracy
  - [ ] Users can edit the event details after the details are detected
  - [ ] App adds the event to the calendar and google calendar
