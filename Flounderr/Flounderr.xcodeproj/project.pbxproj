@@ -15,6 +15,9 @@
 		4E5CE0BB1CAB498C008101F7 /* GTL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5CE0BA1CAB498C008101F7 /* GTL.framework */; };
 		4E5CE0BE1CAB4A32008101F7 /* GTMOAuth2ViewTouch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E5CE0BD1CAB4A32008101F7 /* GTMOAuth2ViewTouch.xib */; };
 		4E5CE0C11CAB4AEB008101F7 /* GTLCalendar_Sources.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CE0C01CAB4AEB008101F7 /* GTLCalendar_Sources.m */; };
+		4E5CE0C41CAB4DA9008101F7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CE0C31CAB4DA9008101F7 /* LoginViewController.swift */; };
+		4E5CE0C61CAB54BE008101F7 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CE0C51CAB54BE008101F7 /* CalendarViewController.swift */; };
+		4E5CE0C81CAB54E7008101F7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CE0C71CAB54E7008101F7 /* WelcomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		4E5CE0BF1CAB4AEB008101F7 /* Flounderr-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flounderr-Bridging-Header.h"; sourceTree = "<group>"; };
 		4E5CE0C01CAB4AEB008101F7 /* GTLCalendar_Sources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTLCalendar_Sources.m; path = "../../../google-api-objectivec-client/Source/Services/Calendar/Generated/GTLCalendar_Sources.m"; sourceTree = "<group>"; };
 		4E5CE0C21CAB4B0B008101F7 /* GTLCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTLCalendar.h; path = "../../../google-api-objectivec-client/Source/Services/Calendar/Generated/GTLCalendar.h"; sourceTree = "<group>"; };
+		4E5CE0C31CAB4DA9008101F7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4E5CE0C51CAB54BE008101F7 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		4E5CE0C71CAB54E7008101F7 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,11 +75,14 @@
 				4E5CE0C01CAB4AEB008101F7 /* GTLCalendar_Sources.m */,
 				4E5CE0A81CAB4958008101F7 /* AppDelegate.swift */,
 				4E5CE0AA1CAB4958008101F7 /* ViewController.swift */,
+				4E5CE0C31CAB4DA9008101F7 /* LoginViewController.swift */,
+				4E5CE0C51CAB54BE008101F7 /* CalendarViewController.swift */,
 				4E5CE0AC1CAB4958008101F7 /* Main.storyboard */,
 				4E5CE0AF1CAB4958008101F7 /* Assets.xcassets */,
 				4E5CE0B11CAB4958008101F7 /* LaunchScreen.storyboard */,
 				4E5CE0B41CAB4958008101F7 /* Info.plist */,
 				4E5CE0BF1CAB4AEB008101F7 /* Flounderr-Bridging-Header.h */,
+				4E5CE0C71CAB54E7008101F7 /* WelcomeViewController.swift */,
 			);
 			path = Flounderr;
 			sourceTree = "<group>";
@@ -158,7 +167,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E5CE0C61CAB54BE008101F7 /* CalendarViewController.swift in Sources */,
+				4E5CE0C41CAB4DA9008101F7 /* LoginViewController.swift in Sources */,
 				4E5CE0AB1CAB4958008101F7 /* ViewController.swift in Sources */,
+				4E5CE0C81CAB54E7008101F7 /* WelcomeViewController.swift in Sources */,
 				4E5CE0C11CAB4AEB008101F7 /* GTLCalendar_Sources.m in Sources */,
 				4E5CE0A91CAB4958008101F7 /* AppDelegate.swift in Sources */,
 			);
