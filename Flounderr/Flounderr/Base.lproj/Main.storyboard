@@ -332,14 +332,14 @@
                         <outlet property="signUpPasswordTextField" destination="lZg-9b-jT4" id="Xee-Wf-s7Q"/>
                         <outlet property="signUpUsernameTextField" destination="ly9-eT-wYD" id="tkO-NL-0E1"/>
                         <outlet property="signUpView" destination="gLI-Na-aVN" id="8Pr-hC-vgi"/>
-                        <segue destination="UTa-NY-jJr" kind="modal" identifier="loginSegue" id="2ED-Jm-9QP"/>
+                        <segue destination="ke1-Nx-4KV" kind="modal" identifier="loginSegue" id="2ED-Jm-9QP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Scp-tG-yGH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="665" y="333"/>
         </scene>
-        <!--View Controller-->
+        <!--Calendar-->
         <scene sceneID="tTf-uV-1C2">
             <objects>
                 <viewController id="UTa-NY-jJr" sceneMemberID="viewController">
@@ -351,8 +351,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login/signup was successful!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCE-gY-aZ3">
-                                <rect key="frame" x="48" y="131" width="225" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Show calendar here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCE-gY-aZ3">
+                                <rect key="frame" x="84" y="131" width="152" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -360,8 +360,47 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Calendar" id="yUj-Ab-v4V">
+                        <barButtonItem key="rightBarButtonItem" title="+" id="vqu-M6-rHt"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="doU-60-5PL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1626" y="333"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="bbq-OX-SiP">
+            <objects>
+                <viewController id="mJC-Pw-aF9" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BgV-v3-bID"/>
+                        <viewControllerLayoutGuide type="bottom" id="srG-Dm-ZcX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aNr-cW-T81">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wnD-wy-QU9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2093" y="333"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zIr-wg-RCH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ke1-Nx-4KV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sXv-RE-KmZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="UTa-NY-jJr" kind="relationship" relationship="rootViewController" id="SWk-I4-wk7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xhx-ED-pBk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1094" y="333"/>
         </scene>

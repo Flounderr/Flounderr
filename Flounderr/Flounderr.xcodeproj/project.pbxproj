@@ -81,16 +81,12 @@
 		4E5CE0A71CAB4958008101F7 /* Flounderr */ = {
 			isa = PBXGroup;
 			children = (
+				4E76A5301CACCE710039011C /* Storyboards */,
+				4E76A52F1CACCE5C0039011C /* View Controllers */,
 				4E5CE0C21CAB4B0B008101F7 /* GTLCalendar.h */,
 				4E5CE0C01CAB4AEB008101F7 /* GTLCalendar_Sources.m */,
 				4E5CE0A81CAB4958008101F7 /* AppDelegate.swift */,
-				4E5CE0AA1CAB4958008101F7 /* ViewController.swift */,
-				4E5CE0C71CAB54E7008101F7 /* WelcomeViewController.swift */,
-				4E5CE0C31CAB4DA9008101F7 /* LoginViewController.swift */,
-				4E5CE0C51CAB54BE008101F7 /* CalendarViewController.swift */,
-				4E5CE0AC1CAB4958008101F7 /* Main.storyboard */,
 				4E5CE0AF1CAB4958008101F7 /* Assets.xcassets */,
-				4E5CE0B11CAB4958008101F7 /* LaunchScreen.storyboard */,
 				4E5CE0B41CAB4958008101F7 /* Info.plist */,
 				4E5CE0BF1CAB4AEB008101F7 /* Flounderr-Bridging-Header.h */,
 			);
@@ -111,6 +107,26 @@
 				4E76A52D1CAC795C0039011C /* TrashHand.TTF */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		4E76A52F1CACCE5C0039011C /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4E5CE0AA1CAB4958008101F7 /* ViewController.swift */,
+				4E5CE0C71CAB54E7008101F7 /* WelcomeViewController.swift */,
+				4E5CE0C31CAB4DA9008101F7 /* LoginViewController.swift */,
+				4E5CE0C51CAB54BE008101F7 /* CalendarViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		4E76A5301CACCE710039011C /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				4E5CE0AC1CAB4958008101F7 /* Main.storyboard */,
+				4E5CE0B11CAB4958008101F7 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		B499545B7D31580AC0E5C6C1 /* Frameworks */ = {
