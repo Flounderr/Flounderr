@@ -1,38 +1,25 @@
 //
-//  CalendarViewController.swift
+//  EventDetailViewController.swift
 //  Flounderr
 //
-//  Created by Ha Nuel Lee on 3/29/16.
+//  Created by Ha Nuel Lee on 3/31/16.
 //  Copyright © 2016 Flounderr. All rights reserved.
 //
 
 import UIKit
-import CVCalendar
 
-class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
-    
-    @IBOutlet weak var menuView: CVCalendarMenuView!
-    @IBOutlet weak var calendarView: CVCalendarView!
+class EventDetailViewController: UIViewController {
+    var recognizedText:String!
+    @IBOutlet weak var recognizedTextLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        menuView.delegate = self
-        calendarView.delegate = self
+        print("Inside EventDetailViewController: \(recognizedText)")
+        recognizedTextLabel.text = recognizedText
     }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        calendarView.commitCalendarViewUpdate()
-        menuView.commitMenuViewUpdate()
-    }
-    func presentationMode() -> CalendarMode {
-        return .MonthView
-    }
-    func firstWeekday() -> Weekday {
-        return .Sunday
-    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

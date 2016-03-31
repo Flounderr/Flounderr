@@ -6,4 +6,5 @@ use_frameworks!
 target 'Flounderr' do
 	pod 'Parse'
     pod 'TesseractOCRiOS', '4.0.0'
+    pod 'CVCalendar', '~> 1.2.9'
 end

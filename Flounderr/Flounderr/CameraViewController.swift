@@ -12,6 +12,7 @@ import TesseractOCR
 class CameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, G8TesseractDelegate {
     
     let tesseract:G8Tesseract = G8Tesseract(language: "eng")
+    var recognizedText:String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +43,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         tesseract.image = originalImage
         
         tesseract.recognize()
-        print("Recognized: \(tesseract.recognizedText)")
+        recognizedText = tesseract.recognizedText
         dismissViewControllerAnimated(true) { 
             self.performSegueWithIdentifier("eventDetailSegue", sender: self)
         }
@@ -54,14 +55,16 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
+        let eventDetailViewController = segue.destinationViewController as! EventDetailViewController
         // Pass the selected object to the new view controller.
+        eventDetailViewController.recognizedText = recognizedText
     }
-    */
+    
 
 }

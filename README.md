@@ -6,7 +6,7 @@ Flounder is an app which allows users to click pictures of flyers and detects th
 
  - [x] Users can log in 
  - [x] Users can take a picture of a flyer
- - [ ] App can detect the date and event name on the flyer as well as the location with some accuracy
+ - [x] App can detect the date and event name on the flyer as well as the location with some accuracy
  - [ ] Users can edit the event details after the details are detected
  - [ ] App adds the event to the calendar and google calendar
 
@@ -34,13 +34,20 @@ Model classes we need so far:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/j2SL1BG.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/mmfDzqY.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+
+## Things that need to be done from 4/1/2016 ~
+ - Somehow detect event names, dates, places from the recognized text
+ - Integrate Google Calendar
+ - Be able to display event details when clicking on the days on the calendar
+ - Possibly add some more training data for Tesseract
+ - Improve UI
 
 ## License
 

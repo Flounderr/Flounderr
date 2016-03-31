@@ -22,6 +22,7 @@
 		4E76A5321CACD1B30039011C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E76A5311CACD1B30039011C /* libz.tbd */; };
 		4E76A54B1CACD4F00039011C /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 4E76A54A1CACD4F00039011C /* tessdata */; };
 		4E76A54D1CACD9D20039011C /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E76A54C1CACD9D20039011C /* CameraViewController.swift */; };
+		4E76A54F1CACEBCD0039011C /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E76A54E1CACEBCD0039011C /* EventDetailViewController.swift */; };
 		E3FB02719820A17D6323CAFA /* Pods_Flounderr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73E84F15620BE9DFEA4F7A3 /* Pods_Flounderr.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		4E76A5311CACD1B30039011C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		4E76A54A1CACD4F00039011C /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		4E76A54C1CACD9D20039011C /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		4E76A54E1CACEBCD0039011C /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		B73E84F15620BE9DFEA4F7A3 /* Pods_Flounderr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flounderr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F42FBE98BAAA0D820260B5AC /* Pods-Flounderr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flounderr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flounderr/Pods-Flounderr.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,6 +127,7 @@
 				4E5CE0C31CAB4DA9008101F7 /* LoginViewController.swift */,
 				4E5CE0C51CAB54BE008101F7 /* CalendarViewController.swift */,
 				4E76A54C1CACD9D20039011C /* CameraViewController.swift */,
+				4E76A54E1CACEBCD0039011C /* EventDetailViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				4E5CE0C81CAB54E7008101F7 /* WelcomeViewController.swift in Sources */,
 				4E76A54D1CACD9D20039011C /* CameraViewController.swift in Sources */,
 				4E5CE0C11CAB4AEB008101F7 /* GTLCalendar_Sources.m in Sources */,
+				4E76A54F1CACEBCD0039011C /* EventDetailViewController.swift in Sources */,
 				4E5CE0A91CAB4958008101F7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

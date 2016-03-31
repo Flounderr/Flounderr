@@ -1,15 +1,18 @@
 PODS:
   - Bolts/Tasks (1.6.0)
+  - CVCalendar (1.2.9)
   - Parse (1.13.0):
     - Bolts/Tasks (~> 1.6)
   - TesseractOCRiOS (4.0.0)
 
 DEPENDENCIES:
+  - CVCalendar (~> 1.2.9)
   - Parse
   - TesseractOCRiOS (= 4.0.0)
 
 SPEC CHECKSUMS:
   Bolts: f52a250053bb517ca874523c3913776359ab3def
+  CVCalendar: 0799256e0bc3b43e83b7e86c0729ce9ff0624cb6
   Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
   TesseractOCRiOS: 90638afbe43d082433f2e76b384c7901d23956df
 
