@@ -370,7 +370,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="doU-60-5PL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1626" y="333"/>
+            <point key="canvasLocation" x="1558" y="333"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="bbq-OX-SiP">
@@ -386,10 +386,32 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="rM4-6A-t07"/>
+                    <connections>
+                        <segue destination="XNl-46-Bq3" kind="push" identifier="eventDetailSegue" id="8ej-uZ-hSY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wnD-wy-QU9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2093" y="333"/>
+            <point key="canvasLocation" x="2013" y="333"/>
+        </scene>
+        <!--Event Details-->
+        <scene sceneID="1T9-da-SEi">
+            <objects>
+                <viewController id="XNl-46-Bq3" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KTq-va-kYK"/>
+                        <viewControllerLayoutGuide type="bottom" id="w7g-q0-x4j"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="r64-GL-60H">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Event Details" id="qvj-wT-dJ8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0fI-1i-gPN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2457" y="333"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zIr-wg-RCH">
