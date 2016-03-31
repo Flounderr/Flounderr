@@ -9,12 +9,15 @@
 import UIKit
 import Parse
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var signUpView: UIView!
     @IBOutlet weak var pageControl: UIPageControl!
+    
+    @IBOutlet weak var loginErrorLabel: UILabel!
+    @IBOutlet weak var signUpErrorLabel: UILabel!
     
     @IBOutlet weak var loginUsernameTextField: UITextField!
     @IBOutlet weak var loginPasswordTextField: UITextField!
@@ -28,6 +31,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        scrollView.delegate = self
+        
         let pageWidth = scrollView.bounds.width
         let pageHeight = scrollView.bounds.height
         
@@ -43,7 +48,6 @@ class LoginViewController: UIViewController {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         pageControl.currentPage = Int(scrollView.contentOffset.x / scrollView.bounds.width)
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -57,30 +61,68 @@ class LoginViewController: UIViewController {
         PFUser.logInWithUsernameInBackground(loginUsernameTextField.text!, password: loginPasswordTextField.text!) { (user: PFUser?, error: NSError?) -> Void in
             if user != nil {
                 print("Yay! successful logging in!")
+                self.loginErrorLabel.text = ""
+                self.signUpErrorLabel.text = ""
                 self.performSegueWithIdentifier("loginSegue", sender: nil)
             }
             else {
-                print(error?.localizedDescription )
+                let errorCode = error!.code
+                switch errorCode {
+                case 100:
+                    self.loginErrorLabel.text = "Cannot connect to server. Please try again later."
+                    break
+                case 101:
+                    self.loginErrorLabel.text = "The username or password is incorrect."
+                    break
+                case 200:
+                    self.loginErrorLabel.text = "Please type in your username."
+                    break
+                case 201:
+                    self.loginErrorLabel.text = "Please type in your password."
+                    break
+                default:
+                    self.loginErrorLabel.text = "Something went wrong. Please try again later."
+                    break
+                }
+                print(error?.localizedDescription)
             }
         }
     }
     @IBAction func onSignUp(sender: AnyObject) {
-        
         let newUser = PFUser()
         newUser.username = signUpUsernameTextField.text
-        if signUpPasswordTextField.text != signUpConfirmPasswordTextField.text {
-            print("Password doesn't match!")
-            
+        if (signUpUsernameTextField.text ?? "").isEmpty {
+            signUpErrorLabel.text = "Username is required."
+        }
+        else if (signUpPasswordTextField.text ?? "").isEmpty {
+            signUpErrorLabel.text = "Password is required."
+        }
+        else if signUpPasswordTextField.text != signUpConfirmPasswordTextField.text {
+            signUpErrorLabel.text = "The password doesn't match."
         }
         else {
             newUser.password = signUpPasswordTextField.text
             newUser.signUpInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
                 if success {
                     print("Yay! user was created.")
+                    self.loginErrorLabel.text = ""
+                    self.signUpErrorLabel.text = ""
                     self.performSegueWithIdentifier("loginSegue", sender: nil)
                 }
                 else {
-                    print(error?.localizedDescription)
+                    let errorCode = error!.code
+                    switch errorCode {
+                    case 100:
+                        self.signUpErrorLabel.text = "Cannot connect to server. Please try again later."
+                        break
+                    case 202:
+                        self.signUpErrorLabel.text = "The username is already taken."
+                        break
+                    default:
+                        self.signUpErrorLabel.text = "Something went wrong. Please try again later."
+                        break
+                    }
+
                 }
             }
         }
