@@ -19,6 +19,7 @@
 		4E5CE0C61CAB54BE008101F7 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CE0C51CAB54BE008101F7 /* CalendarViewController.swift */; };
 		4E5CE0C81CAB54E7008101F7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CE0C71CAB54E7008101F7 /* WelcomeViewController.swift */; };
 		4E76A52E1CAC795C0039011C /* TrashHand.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 4E76A52D1CAC795C0039011C /* TrashHand.TTF */; };
+		4E76A5321CACD1B30039011C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E76A5311CACD1B30039011C /* libz.tbd */; };
 		E3FB02719820A17D6323CAFA /* Pods_Flounderr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73E84F15620BE9DFEA4F7A3 /* Pods_Flounderr.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		4E5CE0C51CAB54BE008101F7 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		4E5CE0C71CAB54E7008101F7 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		4E76A52D1CAC795C0039011C /* TrashHand.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; name = TrashHand.TTF; path = "../../../../Fonts/Trash Hand-free/TrashHand.TTF"; sourceTree = "<group>"; };
+		4E76A5311CACD1B30039011C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		B73E84F15620BE9DFEA4F7A3 /* Pods_Flounderr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flounderr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F42FBE98BAAA0D820260B5AC /* Pods-Flounderr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flounderr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flounderr/Pods-Flounderr.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -49,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E76A5321CACD1B30039011C /* libz.tbd in Frameworks */,
 				4E5CE0BB1CAB498C008101F7 /* GTL.framework in Frameworks */,
 				E3FB02719820A17D6323CAFA /* Pods_Flounderr.framework in Frameworks */,
 			);
@@ -132,6 +135,7 @@
 		B499545B7D31580AC0E5C6C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4E76A5311CACD1B30039011C /* libz.tbd */,
 				B73E84F15620BE9DFEA4F7A3 /* Pods_Flounderr.framework */,
 			);
 			name = Frameworks;
