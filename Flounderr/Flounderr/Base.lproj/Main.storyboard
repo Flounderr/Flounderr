@@ -361,17 +361,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Calendar" id="yUj-Ab-v4V">
-                        <barButtonItem key="rightBarButtonItem" title="+" id="vqu-M6-rHt"/>
+                        <barButtonItem key="rightBarButtonItem" title="+" id="vqu-M6-rHt">
+                            <connections>
+                                <segue destination="mJC-Pw-aF9" kind="push" id="bpt-cn-jWC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="doU-60-5PL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1626" y="333"/>
         </scene>
-        <!--View Controller-->
+        <!--Camera View Controller-->
         <scene sceneID="bbq-OX-SiP">
             <objects>
-                <viewController id="mJC-Pw-aF9" sceneMemberID="viewController">
+                <viewController id="mJC-Pw-aF9" customClass="CameraViewController" customModule="Flounderr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BgV-v3-bID"/>
                         <viewControllerLayoutGuide type="bottom" id="srG-Dm-ZcX"/>
@@ -381,6 +385,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="rM4-6A-t07"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wnD-wy-QU9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

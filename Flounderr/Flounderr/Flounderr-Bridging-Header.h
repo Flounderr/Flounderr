@@ -3,3 +3,4 @@
 //
 #import "GTL/GTMOAuth2ViewControllerTouch.h"
 #import "GTLCalendar.h"
+#import <TesseractOCR/TesseractOCR.h>
