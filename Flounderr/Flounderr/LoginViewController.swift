@@ -107,7 +107,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
                     print("Yay! user was created.")
                     self.loginErrorLabel.text = ""
                     self.signUpErrorLabel.text = ""
-                    self.performSegueWithIdentifier("loginSegue", sender: nil)
+                    self.performSegueWithIdentifier("signUpSegue", sender: nil)
                 }
                 else {
                     let errorCode = error!.code

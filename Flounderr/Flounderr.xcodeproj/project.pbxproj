@@ -23,6 +23,7 @@
 		4E76A54B1CACD4F00039011C /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 4E76A54A1CACD4F00039011C /* tessdata */; };
 		4E76A54D1CACD9D20039011C /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E76A54C1CACD9D20039011C /* CameraViewController.swift */; };
 		4E76A54F1CACEBCD0039011C /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E76A54E1CACEBCD0039011C /* EventDetailViewController.swift */; };
+		4EE289111CBB41BC00020B93 /* SyncGoogleCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE289101CBB41BC00020B93 /* SyncGoogleCalendarViewController.swift */; };
 		E3FB02719820A17D6323CAFA /* Pods_Flounderr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73E84F15620BE9DFEA4F7A3 /* Pods_Flounderr.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		4E76A54A1CACD4F00039011C /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		4E76A54C1CACD9D20039011C /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		4E76A54E1CACEBCD0039011C /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		4EE289101CBB41BC00020B93 /* SyncGoogleCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncGoogleCalendarViewController.swift; sourceTree = "<group>"; };
 		B73E84F15620BE9DFEA4F7A3 /* Pods_Flounderr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flounderr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F42FBE98BAAA0D820260B5AC /* Pods-Flounderr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flounderr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flounderr/Pods-Flounderr.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +92,7 @@
 		4E5CE0A71CAB4958008101F7 /* Flounderr */ = {
 			isa = PBXGroup;
 			children = (
+				4EE289141CBB452200020B93 /* API */,
 				4E76A54A1CACD4F00039011C /* tessdata */,
 				4E76A5301CACCE710039011C /* Storyboards */,
 				4E76A52F1CACCE5C0039011C /* View Controllers */,
@@ -125,6 +128,7 @@
 				4E5CE0AA1CAB4958008101F7 /* ViewController.swift */,
 				4E5CE0C71CAB54E7008101F7 /* WelcomeViewController.swift */,
 				4E5CE0C31CAB4DA9008101F7 /* LoginViewController.swift */,
+				4EE289101CBB41BC00020B93 /* SyncGoogleCalendarViewController.swift */,
 				4E5CE0C51CAB54BE008101F7 /* CalendarViewController.swift */,
 				4E76A54C1CACD9D20039011C /* CameraViewController.swift */,
 				4E76A54E1CACEBCD0039011C /* EventDetailViewController.swift */,
@@ -139,6 +143,13 @@
 				4E5CE0B11CAB4958008101F7 /* LaunchScreen.storyboard */,
 			);
 			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		4EE289141CBB452200020B93 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 		B499545B7D31580AC0E5C6C1 /* Frameworks */ = {
@@ -291,6 +302,7 @@
 				4E76A54D1CACD9D20039011C /* CameraViewController.swift in Sources */,
 				4E5CE0C11CAB4AEB008101F7 /* GTLCalendar_Sources.m in Sources */,
 				4E76A54F1CACEBCD0039011C /* EventDetailViewController.swift in Sources */,
+				4EE289111CBB41BC00020B93 /* SyncGoogleCalendarViewController.swift in Sources */,
 				4E5CE0A91CAB4958008101F7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

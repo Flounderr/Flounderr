@@ -7,25 +7,54 @@
 //
 
 import UIKit
+import WebKit
 
-class EventDetailViewController: UIViewController {
+class EventDetailViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
     var recognizedText:String!
-    @IBOutlet weak var recognizedTextLabel: UILabel!
+    var webView: WKWebView!
+    var contentController: WKUserContentController!
+    var config: WKWebViewConfiguration!
     
+    @IBOutlet weak var webViewContainer: UIView!
+    
+    override func loadView() {
+        super.loadView()
+        contentController = WKUserContentController()
+        config = WKWebViewConfiguration()
+        config.userContentController = contentController
+        
+        webView = WKWebView(frame: webViewContainer.bounds,
+                            configuration: config)
+        webView.navigationDelegate = self
+        webViewContainer.addSubview(webView)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         print("Inside EventDetailViewController: \(recognizedText)")
-        recognizedTextLabel.text = recognizedText
+        let url = NSURL(string: "https://www.google.com/")!
+        let request = NSURLRequest(URL: url)
+        webView.loadRequest(request)
+        
+        webView.evaluateJavaScript("alert('Hi!')") { (result: AnyObject?, error: NSError?) in
+            if result != nil {
+                print(result)
+            }
+            else {
+                print("error: \(error?.localizedDescription)")
+            }
+        }
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
+    func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
+        if message.name == "callbackHandler" {
+            print("Javascript is sending a message: \(message.body)");
+        }
+    }
     /*
     // MARK: - Navigation
 
