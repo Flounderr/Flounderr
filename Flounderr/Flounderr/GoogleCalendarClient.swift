@@ -58,7 +58,31 @@ class GoogleCalendarClient: NSObject {
         // Only fetch event if the user was successfully authorized
         if let authorizer = service.authorizer,
             canAuth = authorizer.canAuthorize where canAuth {
-            print("Can fetch event!")
+            let query = GTLQueryCalendar.queryForEventsListWithCalendarId("primary")
+            query.maxResults = 15
+            query.timeMin = GTLDateTime(date: NSDate(), timeZone: NSTimeZone.localTimeZone())
+            query.singleEvents = true
+            query.orderBy = kGTLCalendarOrderByStartTime
+            service.executeQuery(query, completionHandler: { (ticekt: GTLServiceTicket!, response: AnyObject!, error: NSError!) in
+                var eventString = ""
+                print("\n\nEVENTS!!!!!!!!!!!!!!!!!\n\n")
+                // Print the event summaries...
+                if error != nil {
+                    print("Event fetching Error: ", error.localizedDescription)
+                    return
+                }
+                if let events = response.items() where !events.isEmpty {
+                    for event in events as! [GTLCalendarEvent] {
+                        var start: GTLDateTime! = event.start.dateTime ?? event.start.date
+                        var startString = NSDateFormatter.localizedStringFromDate(start.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+                        eventString += "\(startString) - \(event.summary)\n"
+                    }
+                }
+                else {
+                    eventString = "No upcoming events found"
+                }
+                print(eventString)
+            })
         }
         else {
             print("Can't fetch event because authorization wasn't successful.")
