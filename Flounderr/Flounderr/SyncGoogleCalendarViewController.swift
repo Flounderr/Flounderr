@@ -9,10 +9,11 @@
 import UIKit
 
 class SyncGoogleCalendarViewController: UIViewController {
+    //var googleClient: GoogleCalendarClient = GoogleCalendarClient()
     
     @IBOutlet weak var syncGoogleCalendarButton: UIButton!
     @IBOutlet weak var skipButton: UIButton!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,8 +26,9 @@ class SyncGoogleCalendarViewController: UIViewController {
     }
     
     @IBAction func onGoogleCalendarSync(sender: AnyObject) {
-        
-        performSegueWithIdentifier("calendarSegue", sender: nil)
+        presentViewController(GoogleCalendarClient.sharedInstance.authorize(self, segueName: "calendarSegue"), animated: true) {
+            print("\nHello!\n")
+        }
     }
     @IBAction func onSkip(sender: AnyObject) {
         performSegueWithIdentifier("calendarSegue", sender: nil)
@@ -34,7 +36,7 @@ class SyncGoogleCalendarViewController: UIViewController {
     
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -42,6 +44,6 @@ class SyncGoogleCalendarViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }
