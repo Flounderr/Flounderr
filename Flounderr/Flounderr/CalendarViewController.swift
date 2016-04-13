@@ -20,7 +20,14 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
         // Do any additional setup after loading the view.
         menuView.delegate = self
         calendarView.delegate = self
-        GoogleCalendarClient.sharedInstance.fetchEvents()
+        if GoogleCalendarClient.sharedInstance.isUserAuthorized() {
+            GoogleCalendarClient.sharedInstance.fetchEvents()
+            
+        }
+        else {
+            print("User doesn't have a google account!")
+        }
+        
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()

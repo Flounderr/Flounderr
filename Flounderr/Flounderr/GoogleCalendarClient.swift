@@ -88,6 +88,12 @@ class GoogleCalendarClient: NSObject {
             print("Can't fetch event because authorization wasn't successful.")
         }
     }
+    func isUserAuthorized() -> Bool {
+        if service.authorizer == nil {
+            return false
+        }
+        return service.authorizer.canAuthorize!
+    }
     /*
     func setAuthorizer(currView: UIViewController, finishedWithAuth authResult: GTMOAuth2Authentication, error: NSError?) {
         if let error = error {
