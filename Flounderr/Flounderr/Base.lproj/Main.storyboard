@@ -269,6 +269,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="onLogin:" destination="qC4-n3-St1" eventType="touchUpInside" id="7Az-II-Ij6"/>
+                                                    <segue destination="sK4-1u-aPq" kind="modal" identifier="loginSegue" id="QG6-jR-SXG"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KSM-9I-f9a">
@@ -332,7 +333,6 @@
                         <outlet property="signUpPasswordTextField" destination="lZg-9b-jT4" id="Xee-Wf-s7Q"/>
                         <outlet property="signUpUsernameTextField" destination="ly9-eT-wYD" id="tkO-NL-0E1"/>
                         <outlet property="signUpView" destination="gLI-Na-aVN" id="8Pr-hC-vgi"/>
-                        <segue destination="ke1-Nx-4KV" kind="modal" identifier="loginSegue" id="2ED-Jm-9QP"/>
                         <segue destination="sK4-1u-aPq" kind="modal" identifier="signUpSegue" id="3SK-5W-xFE"/>
                     </connections>
                 </viewController>
@@ -517,7 +517,7 @@
         <image name="no_typing" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2ED-Jm-9QP"/>
-        <segue reference="mMv-hd-6bB"/>
+        <segue reference="3SK-5W-xFE"/>
+        <segue reference="Odf-B5-wOt"/>
     </inferredMetricsTieBreakers>
 </document>

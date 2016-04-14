@@ -21,6 +21,7 @@ class User: NSObject {
     //static let userDidLogoutNotification = "UserDidLogout"
     
     static var currentUser: User?
+    
     /*
     static var currentUser: User? {
         get {
@@ -103,8 +104,8 @@ class User: NSObject {
      
      Log user into Google Calendar.
     */
-    static func loginGoogleCalendar(currView: UIViewController, segueName: String?) -> GTMOAuth2ViewControllerTouch? {
-        return nil
+    static func loginThroughGoogleCalendar(currView: UIViewController, segueName: String?) -> GTMOAuth2ViewControllerTouch {
+        return GoogleCalendarClient.sharedInstance.authorize(currView, segueName: segueName)
     }
     /**
      #logout
@@ -114,6 +115,7 @@ class User: NSObject {
     static func logout() {
         PFUser.logOut()
         currentUser = nil
+        GoogleCalendarClient.sharedInstance.deauthorize()
         NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
     }
     /**
@@ -131,7 +133,7 @@ class User: NSObject {
      Checks if the user was authorized through Google.
     */
     static func isUserGoogleAuthorized() -> Bool {
-        return false
+        return GoogleCalendarClient.sharedInstance.isUserAuthorized()
     }
     
 }

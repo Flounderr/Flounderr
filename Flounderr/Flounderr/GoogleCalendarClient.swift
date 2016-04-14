@@ -46,7 +46,9 @@ class GoogleCalendarClient: NSObject {
             }
         })
     }
-    
+    func deauthorize() {
+        service.authorizer = nil
+    }
     func fetchEvents() {
         // Only fetch event if the user was successfully authorized
         if let authorizer = service.authorizer,
