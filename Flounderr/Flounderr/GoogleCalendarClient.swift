@@ -23,14 +23,6 @@ class GoogleCalendarClient: NSObject {
         }
         // Present the Google sign in view
         let scopeString = scopes.joinWithSeparator(" ")
-        /*
-        return GTMOAuth2ViewControllerTouch(scope: scopeString,
-                                     clientID: kClientID,
-                                     clientSecret: nil,
-                                     keychainItemName: kKeychainItemName,
-                                     delegate: self,
-                                     finishedSelector: "setAuthorizer:finishedWithAuth:error:")
-        */
         return GTMOAuth2ViewControllerTouch(scope: scopeString, clientID: kClientID, clientSecret: nil, keychainItemName: kKeychainItemName, completionHandler: { (controller: GTMOAuth2ViewControllerTouch!, authResult: GTMOAuth2Authentication!, error: NSError!) in
             // If there's an error authorizing user, return without doing anything
             if error != nil {
@@ -54,6 +46,7 @@ class GoogleCalendarClient: NSObject {
             }
         })
     }
+    
     func fetchEvents() {
         // Only fetch event if the user was successfully authorized
         if let authorizer = service.authorizer,
@@ -94,17 +87,4 @@ class GoogleCalendarClient: NSObject {
         }
         return service.authorizer.canAuthorize!
     }
-    /*
-    func setAuthorizer(currView: UIViewController, finishedWithAuth authResult: GTMOAuth2Authentication, error: NSError?) {
-        if let error = error {
-            service.authorizer = nil
-            print("Authentiction Error: ", error.localizedDescription)
-            return
-        }
-        service.authorizer = authResult
-        print("Authorization successful!")
-        currView.dismissViewControllerAnimated(true, completion: nil)
-    }
-    */
-    
 }

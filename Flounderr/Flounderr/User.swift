@@ -7,27 +7,28 @@
 //
 
 import UIKit
+import Parse
 
 class User: NSObject {
-    var username: String?
-    var googleUsername: String?
-    var eventsArray: [GTLCalendarEvent]?
+    var PFUserObject: PFUser?
+    var userGoogleServce: Int? // Change later
     
-    static var _currentUser: User?
-    static let userDidLogoutNotification = "UserDidLogout"
+    static var authorizeSuccess: (() -> ())?
+    static var authorizeFailure: ((NSError) -> ())?
     
-    init(eventsArray: [GTLCalendarEvent]) {
-        // Do initialzation
-    }
-    class var currentUser: User? {
+    //static let userDidLogoutNotification = "UserDidLogout"
+    
+    static var currentUser: User?
+    /*
+    static var currentUser: User? {
         get {
             if _currentUser == nil {
                 let defaults = NSUserDefaults.standardUserDefaults()
                 let userData = defaults.objectForKey("currentUserData") as? NSData
                 
                 if let userData = userData {
-                    let eventsArray = try! NSJSONSerialization.JSONObjectWithData(userData, options: []) as! [GTLCalendarEvent]
-                    _currentUser = User(eventsArray: eventsArray)
+                    let PFUserObject = try! NSJSONSerialization.JSONObjectWithData(userData, options: []) as! PFUser
+                    _currentUser = User(PFUserObject: PFUserObject)
                 }
             }
             return _currentUser
@@ -35,9 +36,8 @@ class User: NSObject {
         set(user) {
             _currentUser = user
             let defaults = NSUserDefaults.standardUserDefaults()
-            
             if let user = user {
-                let data = try! NSJSONSerialization.dataWithJSONObject(user.eventsArray!, options: [])
+                let data = try! NSJSONSerialization.dataWithJSONObject(user.PFUserObject!, options: [])
                 defaults.setObject(data, forKey: "currentUserData")
             }
             else {
@@ -46,4 +46,89 @@ class User: NSObject {
             defaults.synchronize()
         }
     }
+    */
+    
+    /**
+     Constructor for User class.
+     */
+    init(PFUserObject: PFUser) {
+        self.PFUserObject = PFUserObject
+    }
+    /**
+     #signUp
+     
+     Signs up new user.
+    */
+    static func signUp(username: String?, password: String?, success: () -> (), failure: (NSError) -> ()) {
+        authorizeSuccess = success
+        authorizeFailure = failure
+        
+        let newUser = PFUser()
+        newUser.username = username
+        newUser.password = password
+        newUser.signUpInBackgroundWithBlock { (success: Bool, error: NSError?) in
+            if success {
+                currentUser = User(PFUserObject: newUser)
+                self.authorizeSuccess!()
+            }
+            else {
+                self.authorizeFailure!(error!)
+            }
+        }
+    }
+    /**
+     # login
+     
+     Log user into the application.
+     */
+    static func login(username: String?, password: String?, success: () -> (), failure: (NSError) -> ()) {
+        authorizeSuccess = success
+        authorizeFailure = failure
+        
+        PFUser.logInWithUsernameInBackground(username!, password: password!) { (user: PFUser?, error: NSError?) in
+            if user != nil {
+                // Set the current user
+                currentUser = User(PFUserObject: user!)
+                self.authorizeSuccess!()
+            }
+            else if error != nil {
+                self.authorizeFailure!(error!)
+            }
+        }
+    }
+    /**
+     #loginGoogleCalendar
+     
+     Log user into Google Calendar.
+    */
+    static func loginGoogleCalendar(currView: UIViewController, segueName: String?) -> GTMOAuth2ViewControllerTouch? {
+        return nil
+    }
+    /**
+     #logout
+     
+     Logs user out of the application.
+     */
+    static func logout() {
+        PFUser.logOut()
+        currentUser = nil
+    }
+    /**
+     #fetchEvents
+     
+     If the user is authorized through Google, fetch both phone calendar events and Google Calendar events.
+     If the user is not authorized through Google, ony fetch phone calendar events.
+    */
+    static func fetchEvents() {
+        
+    }
+    /**
+     #isUserGoogleAuthorized
+     
+     Checks if the user was authorized through Google.
+    */
+    static func isUserGoogleAuthorized() -> Bool {
+        return false
+    }
+    
 }

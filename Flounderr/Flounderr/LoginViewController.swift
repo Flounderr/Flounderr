@@ -58,6 +58,14 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func onLogin(sender: AnyObject) {
+        print("\nInside LoginViewController: onLogin() called!\n")
+        User.login(loginUsernameTextField.text, password: loginPasswordTextField.text, success: {
+            print("\nInside LoginViewController: Yay! Login is successful\n")
+            self.performSegueWithIdentifier("loginSegue", sender: nil)
+        }, failure: { (error: NSError) in
+            print("\nInside LoginViewController: Awh, login failed!\n")
+        })
+        /*
         PFUser.logInWithUsernameInBackground(loginUsernameTextField.text!, password: loginPasswordTextField.text!) { (user: PFUser?, error: NSError?) -> Void in
             if user != nil {
                 print("Yay! successful logging in!")
@@ -87,8 +95,16 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
                 print(error?.localizedDescription)
             }
         }
+        */
     }
     @IBAction func onSignUp(sender: AnyObject) {
+        User.signUp(signUpUsernameTextField.text, password: signUpPasswordTextField.text, success: {
+            print("\nInside LoginViewController: Yay! Signing up was successful\n")
+            self.performSegueWithIdentifier("signUpSegue", sender: nil)
+        }) { (error: NSError) in
+                print("\nInside LoginViewController: Signing up failed!\n")
+        }
+        /*
         let newUser = PFUser()
         newUser.username = signUpUsernameTextField.text
         if (signUpUsernameTextField.text ?? "").isEmpty {
@@ -126,6 +142,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
                 }
             }
         }
+        */
     }
     
 

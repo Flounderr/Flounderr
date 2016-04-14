@@ -364,6 +364,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Calendar" id="yUj-Ab-v4V">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="JUo-DT-E2u">
+                            <connections>
+                                <action selector="onLogout:" destination="UTa-NY-jJr" id="VtG-bA-JkF"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="+" id="vqu-M6-rHt">
                             <connections>
                                 <segue destination="mJC-Pw-aF9" kind="push" id="bpt-cn-jWC"/>
@@ -372,6 +377,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="calendarView" destination="ab0-9F-xRS" id="O4a-Kq-1gC"/>
+                        <outlet property="logoutButton" destination="JUo-DT-E2u" id="Esh-qR-Z0P"/>
                         <outlet property="menuView" destination="ezN-yN-eCu" id="Hex-JQ-1G7"/>
                     </connections>
                 </viewController>
@@ -489,7 +495,7 @@
         <!--Navigation Controller-->
         <scene sceneID="zIr-wg-RCH">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ke1-Nx-4KV" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CalendarNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="ke1-Nx-4KV" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Xmy-hv-UyI"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sXv-RE-KmZ">
@@ -511,7 +517,7 @@
         <image name="no_typing" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="2ED-Jm-9QP"/>
         <segue reference="mMv-hd-6bB"/>
-        <segue reference="pPy-fd-QOh"/>
     </inferredMetricsTieBreakers>
 </document>

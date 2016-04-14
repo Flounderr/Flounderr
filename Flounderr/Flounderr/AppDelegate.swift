@@ -24,6 +24,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 configuration.server = "https://powerful-beyond-43573.herokuapp.com/parse"
             })
         )
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        // There's already a user logged in!
+        if PFUser.currentUser() != nil {
+            print("\nThere exists a current user!\n")
+            let vc = storyboard.instantiateViewControllerWithIdentifier("CalendarNavigationViewController")
+            window?.rootViewController = vc
+        }
+        else {
+            let vc = storyboard.instantiateInitialViewController()
+            window?.rootViewController = vc
+        }
+        
         return true
     }
 

@@ -8,11 +8,13 @@
 
 import UIKit
 import CVCalendar
+import Parse
 
 class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
     @IBOutlet weak var menuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
+    @IBOutlet weak var logoutButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +46,11 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func onLogout(sender: AnyObject) {
+        User.logout()
+        
     }
     
 
