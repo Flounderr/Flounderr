@@ -16,6 +16,8 @@ class User: NSObject {
     static var authorizeSuccess: (() -> ())?
     static var authorizeFailure: ((NSError) -> ())?
     
+    static let userDidLogoutNotification = "UserDidLogout"
+    
     //static let userDidLogoutNotification = "UserDidLogout"
     
     static var currentUser: User?
@@ -112,6 +114,7 @@ class User: NSObject {
     static func logout() {
         PFUser.logOut()
         currentUser = nil
+        NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
     }
     /**
      #fetchEvents
