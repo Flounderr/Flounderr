@@ -23,6 +23,7 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
         menuView.delegate = self
         calendarView.delegate = self
         if GoogleCalendarClient.sharedInstance.isUserAuthorized() {
+            GoogleCalendarClient.sharedInstance.addEvent()
             GoogleCalendarClient.sharedInstance.fetchEvents()
             
         }
@@ -50,7 +51,6 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
     
     @IBAction func onLogout(sender: AnyObject) {
         User.logout()
-        
     }
     
 

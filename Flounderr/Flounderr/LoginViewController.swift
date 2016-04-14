@@ -92,7 +92,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
         print("\nInside LoginViewController: onLogin() called!\n")
         User.login(loginUsernameTextField.text, password: loginPasswordTextField.text, success: {
             print("\nInside LoginViewController: Yay! Login is successful\n")
-            self.performSegueWithIdentifier("loginSegue", sender: nil)
+            self.performSegueWithIdentifier("signUpSegue", sender: nil)
         }, failure: { (error: NSError) in
             print("\nInside LoginViewController: Awh, login failed!\n")
         })

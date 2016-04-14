@@ -13,7 +13,8 @@ class GoogleCalendarClient: NSObject {
     private let kKeychainItemName = "Google Calendar API"
     private let kClientID = "46353301666-j784j95552qeq563v21b0hb674i725mb.apps.googleusercontent.com"
     
-    private let scopes = [kGTLAuthScopeCalendarReadonly]
+    private let scopes = [kGTLAuthScopeCalendar]
+
     private let service = GTLServiceCalendar()
     
     func authorize(currView: UIViewController, segueName: String?) -> GTMOAuth2ViewControllerTouch {
@@ -82,6 +83,29 @@ class GoogleCalendarClient: NSObject {
         else {
             print("Can't fetch event because authorization wasn't successful.")
         }
+    }
+    func addEvent() {
+        var newEvent: GTLCalendarEvent = GTLCalendarEvent()
+        newEvent.summary = "Event summary: You will do stuff except everything"
+        newEvent.descriptionProperty = "Event description: This event shall be fun"
+        
+        print("\naddEvent() being called!!!\n")
+        
+        var startDateTime: GTLDateTime = GTLDateTime(date: NSDate(), timeZone: NSTimeZone(abbreviation: "EST"))
+        var endDateTime: GTLDateTime = GTLDateTime(date: NSDate().dateByAddingTimeInterval(60 * 60), timeZone: NSTimeZone(abbreviation: "EST"))
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy hh:mm"
+        
+        newEvent.start = GTLCalendarEventDateTime()
+        newEvent.start.dateTime = startDateTime
+        print("startDate = \(dateFormatter.stringFromDate(newEvent.start.dateTime.date))\n")
+        
+        newEvent.end = GTLCalendarEventDateTime()
+        newEvent.end.dateTime = endDateTime
+        print("endDate = \(dateFormatter.stringFromDate(newEvent.end.dateTime.date))\n")
+        
+        GTLQueryCalendar.queryForEventsInsertWithObject(newEvent, calendarId: "primary")
     }
     func isUserAuthorized() -> Bool {
         if service.authorizer == nil {
