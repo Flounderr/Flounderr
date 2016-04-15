@@ -51,6 +51,7 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
     
     @IBAction func onLogout(sender: AnyObject) {
         User.logout()
+        self.performSegueWithIdentifier("unwindToWelcomeViewController", sender: nil)
     }
     
 

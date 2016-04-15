@@ -44,6 +44,10 @@ class WelcomeViewController: UIViewController, UIScrollViewDelegate {
         let xOffset = scrollView.bounds.width * CGFloat(pageControl.currentPage)
         scrollView.setContentOffset(CGPointMake(xOffset, 0), animated: true)
     }
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue){
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
