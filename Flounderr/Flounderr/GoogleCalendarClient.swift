@@ -105,7 +105,16 @@ class GoogleCalendarClient: NSObject {
         newEvent.end.dateTime = endDateTime
         print("endDate = \(dateFormatter.stringFromDate(newEvent.end.dateTime.date))\n")
         
-        GTLQueryCalendar.queryForEventsInsertWithObject(newEvent, calendarId: "primary")
+        let insertQuery = GTLQueryCalendar.queryForEventsInsertWithObject(newEvent, calendarId: "primary")
+        service.executeQuery(insertQuery) { (ticket: GTLServiceTicket!, response: AnyObject!, error: NSError!) in
+            if error != nil {
+                print("\n\nError!!!!! :\(error.localizedDescription)\n")
+            }
+            else {
+                print("WooHoo!!!")
+            }
+        }
+        
     }
     func isUserAuthorized() -> Bool {
         if service.authorizer == nil {
