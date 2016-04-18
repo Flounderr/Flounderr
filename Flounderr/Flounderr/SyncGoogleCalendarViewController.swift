@@ -26,8 +26,8 @@ class SyncGoogleCalendarViewController: UIViewController {
     }
     
     @IBAction func onGoogleCalendarSync(sender: AnyObject) {
-        if !User.isUserGoogleAuthorized() {
-            presentViewController(User.loginThroughGoogleCalendar(self, segueName: "calendarSegue"), animated: true, completion: nil)
+        if User.currentUser!.isUserGoogleAuthorized() {
+            presentViewController(User.currentUser!.loginThroughGoogleCalendar(self, segueName: "calendarSegue"), animated: true, completion: nil)
         }
         else {
             performSegueWithIdentifier("calendarSegue", sender: nil)

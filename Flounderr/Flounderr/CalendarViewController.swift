@@ -24,7 +24,8 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
         calendarView.delegate = self
         if GoogleCalendarClient.sharedInstance.isUserAuthorized() {
             GoogleCalendarClient.sharedInstance.addEvent()
-            GoogleCalendarClient.sharedInstance.fetchEvents()
+            let temp = GoogleCalendarClient.sharedInstance.fetchEvents()
+            print("temp = \(temp)")
             
         }
         else {
@@ -50,7 +51,7 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
     }
     
     @IBAction func onLogout(sender: AnyObject) {
-        User.logout()
+        User.currentUser?.logout()
         self.performSegueWithIdentifier("unwindToWelcomeViewController", sender: nil)
     }
     

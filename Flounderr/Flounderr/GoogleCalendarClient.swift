@@ -10,21 +10,37 @@ import UIKit
 
 class GoogleCalendarClient: NSObject {
     static let sharedInstance = GoogleCalendarClient()
+    
     private let kKeychainItemName = "Google Calendar API"
     private let kClientID = "46353301666-j784j95552qeq563v21b0hb674i725mb.apps.googleusercontent.com"
     
+    // Allow read and write to Google calendar
     private let scopes = [kGTLAuthScopeCalendar]
-
     private let service = GTLServiceCalendar()
     
+    /// Authorize Google
+    ///
+    /// - parameter currView: The current view within the app where the Google authorization page should be shown
+    /// - parameter segueName: Name of the segue that should be taken after the User has been successfully authorized
+    /// - returns: GTMOAuth2ViewControllerTouch
     func authorize(currView: UIViewController, segueName: String?) -> GTMOAuth2ViewControllerTouch {
         // Initialize the Google Calendar API service
-        if let auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychainForName(kKeychainItemName, clientID: kClientID, clientSecret: nil) {
+        if let auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychainForName(
+                        kKeychainItemName,
+                        clientID: kClientID,
+                        clientSecret: nil) {
             service.authorizer = auth
         }
         // Present the Google sign in view
         let scopeString = scopes.joinWithSeparator(" ")
-        return GTMOAuth2ViewControllerTouch(scope: scopeString, clientID: kClientID, clientSecret: nil, keychainItemName: kKeychainItemName, completionHandler: { (controller: GTMOAuth2ViewControllerTouch!, authResult: GTMOAuth2Authentication!, error: NSError!) in
+        return GTMOAuth2ViewControllerTouch(scope: scopeString,
+                                            clientID: kClientID,
+                                            clientSecret: nil,
+                                            keychainItemName: kKeychainItemName,
+                                            completionHandler: {
+                                                (controller: GTMOAuth2ViewControllerTouch!,
+                                                authResult: GTMOAuth2Authentication!,
+                                                error: NSError!) in
             // If there's an error authorizing user, return without doing anything
             if error != nil {
                 self.service.authorizer = nil
@@ -35,7 +51,7 @@ class GoogleCalendarClient: NSObject {
             self.service.authorizer = authResult
             print("Authorization successful!")
             // If the segue identifier was provided,
-            // first dismiss the Google authorization page, then segue
+            // first dismiss the Google authorization page, then perform segue
             if segueName != nil {
                 currView.dismissViewControllerAnimated(true, completion: nil)
                 currView.performSegueWithIdentifier(segueName!, sender: nil)
@@ -47,22 +63,30 @@ class GoogleCalendarClient: NSObject {
             }
         })
     }
+    
+    /// Deauthorize Google
     func deauthorize() {
         service.authorizer = nil
     }
-    func fetchEvents() {
+    
+    /// Fetch events for the currently authorized Google user.
+    /// - returns: [NSDictionary]
+    func fetchEvents() -> String {
         // Only fetch event if the user was successfully authorized
+        var temp = ""
         if let authorizer = service.authorizer,
             canAuth = authorizer.canAuthorize where canAuth {
             let query = GTLQueryCalendar.queryForEventsListWithCalendarId("primary")
-            query.maxResults = 15
-            query.timeMin = GTLDateTime(date: NSDate(), timeZone: NSTimeZone.localTimeZone())
+            query.maxResults = 15 // Only fetch 15 events
+            query.timeMin = GTLDateTime(date: NSDate(), timeZone: NSTimeZone.localTimeZone()) // Set the min date to today
             query.singleEvents = true
             query.orderBy = kGTLCalendarOrderByStartTime
-            service.executeQuery(query, completionHandler: { (ticekt: GTLServiceTicket!, response: AnyObject!, error: NSError!) in
+            service.executeQuery(query, completionHandler: {
+                                            (ticekt: GTLServiceTicket!,
+                                            response: AnyObject!,
+                                            error: NSError!) in
                 var eventString = ""
                 print("\n\nEVENTS!!!!!!!!!!!!!!!!!\n\n")
-                // Print the event summaries...
                 if error != nil {
                     print("Event fetching Error: ", error.localizedDescription)
                     return
@@ -78,12 +102,17 @@ class GoogleCalendarClient: NSObject {
                     eventString = "No upcoming events found"
                 }
                 print(eventString)
+                temp = temp + "hello!"
             })
         }
         else {
             print("Can't fetch event because authorization wasn't successful.")
         }
+        return temp
     }
+    
+    /// Add an event to the Google Calendar of the currently authorized Google user.
+    /// (probably should return something...)
     func addEvent() {
         var newEvent: GTLCalendarEvent = GTLCalendarEvent()
         newEvent.summary = "Event summary: You will do stuff except everything"
@@ -114,8 +143,10 @@ class GoogleCalendarClient: NSObject {
                 print("WooHoo!!!")
             }
         }
-        
     }
+    
+    /// Checks if there app has an authorized Google user.
+    /// - returns: Bool
     func isUserAuthorized() -> Bool {
         if service.authorizer == nil {
             return false
