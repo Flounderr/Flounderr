@@ -11,7 +11,8 @@ import Parse
 
 class User: NSObject {
     // The current user that's logged in
-    static var currentUser: User?
+    static var _currentUser: User?
+    static let userDidLogoutNotification = "UserDidLogout"
     
     // Properties of a User
     var PFUserObject: PFUser?
@@ -19,11 +20,39 @@ class User: NSObject {
     
     var authorizeSuccess: (() -> ())?
     var authorizeFailure: ((NSError) -> ())?
+    
+    class var currentUser: User? {
+        get {
+            if _currentUser == nil {
+                let defaults = NSUserDefaults.standardUserDefaults()
+                let userData = defaults.objectForKey("currentUserData") as? NSData
+                
+                if let userData = userData {
+                    let PFUserObject = try! NSJSONSerialization.JSONObjectWithData(userData, options: []) as! PFUser
+                    _currentUser = User(PFUserObject: PFUserObject)
+                }
+            }
+            return _currentUser
+        }
+        set(user) {
+            _currentUser = user
+            let defaults = NSUserDefaults.standardUserDefaults()
+            
+            if let user = user {
+                let data = try! NSJSONSerialization.dataWithJSONObject(user.PFUserObject!, options: [])
+                defaults.setObject(data, forKey: "currentUserData")
+            }
+            else {
+                defaults.setObject(nil, forKey: "currentUserData")
+            }
+            defaults.synchronize()
+        }
+    }
 
     /// Constructor for User class.
     ///
     /// - parameter PFUserObject: PFUser object of the User that will be stored in the Parse server.
-    init(PFUserObject: PFUser) {
+    init(PFUserObject: PFUser?) {
         self.PFUserObject = PFUserObject
     }
     
@@ -70,7 +99,7 @@ class User: NSObject {
         PFUser.logInWithUsernameInBackground(username!, password: password!) { (user: PFUser?, error: NSError?) in
             if user != nil {
                 // If login is successful, set the current user of the app
-                User.currentUser = User(PFUserObject: user!)
+                User.currentUser?.PFUserObject = user!
                 self.authorizeSuccess!()
             }
             else if error != nil {
@@ -94,6 +123,7 @@ class User: NSObject {
         // Dereference the current user on logout
         User.currentUser = nil
         GoogleCalendarClient.sharedInstance.deauthorize()
+        NSNotificationCenter.defaultCenter().postNotificationName(User.userDidLogoutNotification, object: nil)
     }
     
     /// Fetches events in User's calendar. If the User authorized Google, it fetches events for both Google Calendar and the in-app Calendar app. If the User was not authorized for Google, it only fetches the in-app Calendar app events.

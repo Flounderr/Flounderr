@@ -58,51 +58,59 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func onLogin(sender: AnyObject) {
-        /*
-        PFUser.logInWithUsernameInBackground(loginUsernameTextField.text!, password: loginPasswordTextField.text!) { (user: PFUser?, error: NSError?) -> Void in
-            if user != nil {
-                print("Yay! successful logging in!")
-                self.loginErrorLabel.text = ""
-                self.signUpErrorLabel.text = ""
-                self.performSegueWithIdentifier("loginSegue", sender: nil)
-            }
-            else {
-                let errorCode = error!.code
-                switch errorCode {
-                case 100:
-                    self.loginErrorLabel.text = "Cannot connect to server. Please try again later."
-                    break
-                case 101:
-                    self.loginErrorLabel.text = "The username or password is incorrect."
-                    break
-                case 200:
-                    self.loginErrorLabel.text = "Please type in your username."
-                    break
-                case 201:
-                    self.loginErrorLabel.text = "Please type in your password."
-                    break
-                default:
-                    self.loginErrorLabel.text = "Something went wrong. Please try again later."
-                    break
-                }
-                print(error?.localizedDescription)
-            }
-        }
-        */
-        print("\nInside LoginViewController: onLogin() called!\n")
         User.currentUser!.login(loginUsernameTextField.text, password: loginPasswordTextField.text, success: {
             print("\nInside LoginViewController: Yay! Login is successful\n")
             self.performSegueWithIdentifier("signUpSegue", sender: nil)
         }, failure: { (error: NSError) in
-            print("\nInside LoginViewController: Awh, login failed!\n")
+            print("\nInside LoginViewController: Logging in failed!\n")
+            let errorCode = error.code
+            switch errorCode {
+            case 100:
+                self.loginErrorLabel.text = "Cannot connect to server. Please try again later."
+                break
+            case 101:
+                self.loginErrorLabel.text = "The username or password is incorrect."
+                break
+            case 200:
+                self.loginErrorLabel.text = "Please type in your username."
+                break
+            case 201:
+                self.loginErrorLabel.text = "Please type in your password."
+                break
+            default:
+                self.loginErrorLabel.text = "Something went wrong. Please try again later."
+                break
+            }
+            print(error.localizedDescription)
         })
     }
     @IBAction func onSignUp(sender: AnyObject) {
+        if (signUpUsernameTextField.text ?? "").isEmpty {
+            signUpErrorLabel.text = "Username is required."
+        }
+        else if (signUpPasswordTextField.text ?? "").isEmpty {
+            signUpErrorLabel.text = "Password is required."
+        }
+        else if signUpPasswordTextField.text != signUpConfirmPasswordTextField.text {
+            signUpErrorLabel.text = "The password doesn't match."
+        }
         User.currentUser!.signUp(signUpUsernameTextField.text, password: signUpPasswordTextField.text, success: {
             print("\nInside LoginViewController: Yay! Signing up was successful\n")
             self.performSegueWithIdentifier("signUpSegue", sender: nil)
         }) { (error: NSError) in
             print("\nInside LoginViewController: Signing up failed!\n")
+            let errorCode = error.code
+            switch errorCode {
+            case 100:
+                self.signUpErrorLabel.text = "Cannot connect to server. Please try again later."
+                break
+            case 202:
+                self.signUpErrorLabel.text = "The username is already taken."
+                break
+            default:
+                self.signUpErrorLabel.text = "Something went wrong. Please try again later."
+                break
+            }
         }
         /*
         let newUser = PFUser()
