@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         Parse.initializeWithConfiguration(
@@ -25,14 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         )
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        // There's already a user logged in!
         if PFUser.currentUser() != nil {
             print("\nThere exists a current user!\n")
             let vc = storyboard.instantiateViewControllerWithIdentifier("CalendarNavigationViewController")
             window?.rootViewController = vc
         }
-        NSNotificationCenter.defaultCenter().addObserverForName(User.userDidLogoutNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (NSNotification) -> Void in
-            print("\nThere is no current user!\n")
+        else {
             let vc = storyboard.instantiateInitialViewController()
             self.window?.rootViewController = vc
         }

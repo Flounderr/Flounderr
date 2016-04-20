@@ -19,6 +19,7 @@
 		4E5CE0C41CAB4DA9008101F7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CE0C31CAB4DA9008101F7 /* LoginViewController.swift */; };
 		4E5CE0C61CAB54BE008101F7 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CE0C51CAB54BE008101F7 /* CalendarViewController.swift */; };
 		4E5CE0C81CAB54E7008101F7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CE0C71CAB54E7008101F7 /* WelcomeViewController.swift */; };
+		4E67CDF51CC578B70018185C /* ParseUserClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E67CDF41CC578B70018185C /* ParseUserClient.swift */; };
 		4E76A52E1CAC795C0039011C /* TrashHand.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 4E76A52D1CAC795C0039011C /* TrashHand.TTF */; };
 		4E76A5321CACD1B30039011C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E76A5311CACD1B30039011C /* libz.tbd */; };
 		4E76A54B1CACD4F00039011C /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 4E76A54A1CACD4F00039011C /* tessdata */; };
@@ -47,6 +48,7 @@
 		4E5CE0C31CAB4DA9008101F7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4E5CE0C51CAB54BE008101F7 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		4E5CE0C71CAB54E7008101F7 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		4E67CDF41CC578B70018185C /* ParseUserClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseUserClient.swift; sourceTree = "<group>"; };
 		4E76A52D1CAC795C0039011C /* TrashHand.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; name = TrashHand.TTF; path = "../../../../Fonts/Trash Hand-free/TrashHand.TTF"; sourceTree = "<group>"; };
 		4E76A5311CACD1B30039011C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		4E76A54A1CACD4F00039011C /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				4EE289171CBB526600020B93 /* GoogleCalendarClient.swift */,
+				4E67CDF41CC578B70018185C /* ParseUserClient.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E5CE0C61CAB54BE008101F7 /* CalendarViewController.swift in Sources */,
+				4E67CDF51CC578B70018185C /* ParseUserClient.swift in Sources */,
 				4E5CE0C41CAB4DA9008101F7 /* LoginViewController.swift in Sources */,
 				4E5CE0AB1CAB4958008101F7 /* ViewController.swift in Sources */,
 				4E5CE0C81CAB54E7008101F7 /* WelcomeViewController.swift in Sources */,
