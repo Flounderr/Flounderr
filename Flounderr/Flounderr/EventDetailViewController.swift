@@ -9,51 +9,39 @@
 import UIKit
 import WebKit
 
-class EventDetailViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
-    var recognizedText:String!
-    var webView: WKWebView!
-    var contentController: WKUserContentController!
-    var config: WKWebViewConfiguration!
+class EventDetailViewController: UIViewController {
+    var recognizedText: String!
+    let regexMonths = [
+        ["month":1, "regex":try! NSRegularExpression(pattern: "Jan(uary)?", options: NSRegularExpressionOptions.CaseInsensitive)],
+        ["month":2, "regex":try! NSRegularExpression(pattern: "Feb(rurary)?", options: NSRegularExpressionOptions.CaseInsensitive)],
+        ["month":3, "regex":try! NSRegularExpression(pattern: "Mar(ch)?", options: NSRegularExpressionOptions.CaseInsensitive)],
+        ["month":4, "regex":try! NSRegularExpression(pattern: "Apr(il)?", options: NSRegularExpressionOptions.CaseInsensitive)],
+        ["month":5, "regex":try! NSRegularExpression(pattern: "May", options: NSRegularExpressionOptions.CaseInsensitive)],
+        ["month":6, "regex":try! NSRegularExpression(pattern: "Jun(e)?", options: NSRegularExpressionOptions.CaseInsensitive)],
+        ["month":7, "regex":try! NSRegularExpression(pattern: "Jul(y)?", options: NSRegularExpressionOptions.CaseInsensitive)],
+        ["month":8, "regex":try! NSRegularExpression(pattern: "Aug(ust)?", options: NSRegularExpressionOptions.CaseInsensitive)],
+        ["month":9, "regex":try! NSRegularExpression(pattern: "Sep(tember)?", options: NSRegularExpressionOptions.CaseInsensitive)],
+        ["month":10, "regex":try! NSRegularExpression(pattern: "Oct(tober)?", options: NSRegularExpressionOptions.CaseInsensitive)],
+        ["month":11, "regex":try! NSRegularExpression(pattern: "Nov(ember)?", options: NSRegularExpressionOptions.CaseInsensitive)],
+        ["month":12, "regex":try! NSRegularExpression(pattern: "Dec(ember)?", options: NSRegularExpressionOptions.CaseInsensitive)]]
     
-    @IBOutlet weak var webViewContainer: UIView!
-    
-    override func loadView() {
-        super.loadView()
-        contentController = WKUserContentController()
-        config = WKWebViewConfiguration()
-        config.userContentController = contentController
-        
-        webView = WKWebView(frame: webViewContainer.bounds,
-                            configuration: config)
-        webView.navigationDelegate = self
-        webViewContainer.addSubview(webView)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        print("Inside EventDetailViewController: \(recognizedText)")
-        let url = NSURL(string: "https://www.google.com/")!
-        let request = NSURLRequest(URL: url)
-        webView.loadRequest(request)
-        
-        webView.evaluateJavaScript("alert('Hi!')") { (result: AnyObject?, error: NSError?) in
-            if result != nil {
-                print(result)
-            }
-            else {
-                print("error: \(error?.localizedDescription)")
+        //print("Inside EventDetailViewController: \(recognizedText)")
+        var month = 1
+        for regexMonth in regexMonths {
+            if (regexMonth["regex"] as! NSRegularExpression).firstMatchInString(recognizedText, options: [], range: NSMakeRange(0, recognizedText.characters.count)) != nil {
+                month = regexMonth["month"] as! Int
+                break
             }
         }
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
-        if message.name == "callbackHandler" {
-            print("Javascript is sending a message: \(message.body)");
-        }
     }
     /*
     // MARK: - Navigation
