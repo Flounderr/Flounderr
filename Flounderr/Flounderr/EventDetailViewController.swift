@@ -64,17 +64,29 @@ class EventDetailViewController: UIViewController {
     @IBAction func onAddEvent(sender: AnyObject) {
         if (eventNameTextField.text ?? "").isEmpty {
             print("Event name is required!")
-            //return
+            return
         }
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy hh:mm"
         
         let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Day , .Month , .Year], fromDate: dateDatePicker.date)
         
-        //timeDatePicker.date.
-        print("\(dateFormatter.stringFromDate(timeDatePicker.date))")
+        let dateComponents = calendar.components([.Day , .Month , .Year], fromDate: dateDatePicker.date)
+        let timeComponents = calendar.components([.Day , .Month , .Year, .Hour, .Minute], fromDate: timeDatePicker.date)
         
+        dateComponents.hour = timeComponents.hour
+        dateComponents.minute = timeComponents.minute
+        
+        let eventDate = calendar.dateFromComponents(dateComponents)
+        
+        GoogleCalendarClient.sharedInstance.addEvent(eventDate!, eventDescription: eventNameTextField.text!) { (success: Bool) in
+            if success {
+                self.performSegueWithIdentifier("reloadCalendarSegue", sender: nil)
+            }
+            else {
+                print("Adding event failed...")
+            }
+        }
     }
     /*
     // MARK: - Navigation

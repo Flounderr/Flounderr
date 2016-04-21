@@ -23,8 +23,14 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         menuView.delegate = self
         calendarView.delegate = self
+        
+        print("\nviewWillAppear() for CalendarViewController called!\n")
         
         loadInitialEventData()
     }
@@ -39,7 +45,11 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
             GoogleCalendarClient.sharedInstance.fetchEvents({ (success: Bool) in
                 if success {
                     for event in GoogleCalendarClient.sharedInstance.eventList {
-                        self.eventList.addObject(event)
+                        let currEvent = event as! NSDictionary
+                        let dictionary: NSMutableDictionary = ["date":currEvent["date"] as! NSDate,
+                                            "description":currEvent["description"] as! String,
+                                            "writtenToCalendar":false]
+                        self.eventList.addObject(dictionary)
                     }
                 }
                 else {
@@ -62,11 +72,38 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
         return .Sunday
     }
     func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool {
-        
-        
+        /*
         if eventList.count > 0 && eventIndex < eventList.count && (dayView.date.day == CVDate(date: ((eventList.objectAtIndex(eventIndex) as! NSDictionary)["date"] as! NSDate)).day) {
-            eventIndex++
+            eventIndex += 1
             return true
+        }
+         */
+        
+        print("\neventIndex = \(eventIndex), eventList.count = \(eventList.count)\n")
+        
+        if eventList.count > 0 && eventIndex < eventList.count {
+            /*
+            let potentialEventDate = CVDate(date: (eventList.objectAtIndex(eventIndex) as! NSDictionary)["date"] as! NSDate)
+            
+            print("\n\(dayView.date.month) ?= \(potentialEventDate.month)\n")
+            print("\(dayView.date.day) ?= \(potentialEventDate.day)\n")
+            print("\(dayView.date.year) ?= \(potentialEventDate.year)\n")
+            */
+            for element in eventList {
+                var currElement = element as! NSMutableDictionary
+                if !(currElement["writtenToCalendar"] as! Bool) {
+                    let potentialEventDate = CVDate(date: (currElement["date"] as! NSDate))
+                    if dayView.date.month == potentialEventDate.month &&
+                        dayView.date.day == potentialEventDate.day &&
+                        dayView.date.year == potentialEventDate.year {
+                        
+                        print("writtenToCalendar modified!")
+                        currElement.setValue(true, forKey: "writtenToCalendar")
+                        return true
+                    }
+                    
+                }
+            }
         }
         return false
     }
