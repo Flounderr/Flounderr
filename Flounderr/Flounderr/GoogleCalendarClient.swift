@@ -117,34 +117,29 @@ class GoogleCalendarClient: NSObject {
     
     /// Add an event to the Google Calendar of the currently authorized Google user.
     /// (probably should return something...)
-    func addEvent(block: ()) {
-        var newEvent = GTLCalendarEvent()
-        newEvent.summary = "Event summary: You will do stuff except everything"
-        newEvent.descriptionProperty = "Event description: This event shall be fun"
+    func addEvent(eventDate: NSDate, eventDescription: String, block: (Bool)->Void) {
+        let newEvent = GTLCalendarEvent()
+        newEvent.summary = eventDescription
+        //newEvent.descriptionProperty = "Event description: This event shall be fun"
         
         print("\naddEvent() being called!!!\n")
         
-        var startDateTime: GTLDateTime = GTLDateTime(date: NSDate(), timeZone: NSTimeZone(abbreviation: "EST"))
-        var endDateTime: GTLDateTime = GTLDateTime(date: NSDate().dateByAddingTimeInterval(60 * 60), timeZone: NSTimeZone(abbreviation: "EST"))
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy hh:mm"
+        let startDateTime: GTLDateTime = GTLDateTime(date: eventDate, timeZone: NSTimeZone(abbreviation: "EST"))
+        let endDateTime: GTLDateTime = GTLDateTime(date: eventDate.dateByAddingTimeInterval(60 * 60), timeZone: NSTimeZone(abbreviation: "EST"))
         
         newEvent.start = GTLCalendarEventDateTime()
         newEvent.start.dateTime = startDateTime
-        print("startDate = \(dateFormatter.stringFromDate(newEvent.start.dateTime.date))\n")
         
         newEvent.end = GTLCalendarEventDateTime()
         newEvent.end.dateTime = endDateTime
-        print("endDate = \(dateFormatter.stringFromDate(newEvent.end.dateTime.date))\n")
         
         let insertQuery = GTLQueryCalendar.queryForEventsInsertWithObject(newEvent, calendarId: "primary")
         service.executeQuery(insertQuery) { (ticket: GTLServiceTicket!, response: AnyObject!, error: NSError!) in
             if error != nil {
-                print("\n\nError!!!!! :\(error.localizedDescription)\n")
+                block(false)
             }
             else {
-                print("WooHoo!!!")
+                block(true)
             }
         }
     }

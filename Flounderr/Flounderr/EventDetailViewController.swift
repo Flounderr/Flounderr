@@ -25,6 +25,13 @@ class EventDetailViewController: UIViewController {
         ["month":11, "regex":try! NSRegularExpression(pattern: "Nov(ember)?", options: NSRegularExpressionOptions.CaseInsensitive)],
         ["month":12, "regex":try! NSRegularExpression(pattern: "Dec(ember)?", options: NSRegularExpressionOptions.CaseInsensitive)]]
     
+    @IBOutlet weak var dateDatePicker: UIDatePicker!
+    @IBOutlet weak var timeDatePicker: UIDatePicker!
+    @IBOutlet weak var eventNameTextField: UITextField!
+    
+    @IBOutlet weak var addEventButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,11 +44,37 @@ class EventDetailViewController: UIViewController {
                 break
             }
         }
-        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        var eventDay = "\(month)/1/2016"
+        if let convertedDate = dateFormatter.dateFromString(eventDay) {
+            dateDatePicker.date = convertedDate
+        }
+        dateFormatter.dateFormat = "MM/dd/yyyy hh:mm"
+        eventDay += " 00:00"
+        if let convertedDate = dateFormatter.dateFromString(eventDay) {
+            timeDatePicker.date = convertedDate
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func onAddEvent(sender: AnyObject) {
+        if (eventNameTextField.text ?? "").isEmpty {
+            print("Event name is required!")
+            //return
+        }
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy hh:mm"
+        
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day , .Month , .Year], fromDate: dateDatePicker.date)
+        
+        //timeDatePicker.date.
+        print("\(dateFormatter.stringFromDate(timeDatePicker.date))")
+        
     }
     /*
     // MARK: - Navigation
