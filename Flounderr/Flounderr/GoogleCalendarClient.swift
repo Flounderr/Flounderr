@@ -18,7 +18,7 @@ class GoogleCalendarClient: NSObject {
     private let scopes = [kGTLAuthScopeCalendar]
     private let service = GTLServiceCalendar()
     
-    var eventList = [String]()
+    var eventList = NSMutableArray()
     
     /// Authorize Google
     ///
@@ -86,7 +86,6 @@ class GoogleCalendarClient: NSObject {
                                             (ticekt: GTLServiceTicket!,
                                             response: AnyObject!,
                                             error: NSError!) in
-                var eventString = ""
                 print("\n\nEVENTS!!!!!!!!!!!!!!!!!\n\n")
                 if error != nil {
                     print("Event fetching Error: ", error.localizedDescription)
@@ -94,17 +93,19 @@ class GoogleCalendarClient: NSObject {
                 }
                 if let events = response.items() where !events.isEmpty {
                     for event in events as! [GTLCalendarEvent] {
+                        let startDate: NSDate! = event.start.dateTime.date ?? event.start.date.date
+                        let eventSummary = event.summary
+                        
+                        let anEvent: NSDictionary = ["date":startDate, "description":eventSummary]
+                        self.eventList.addObject(anEvent)
+                        /*
                         var start: GTLDateTime! = event.start.dateTime ?? event.start.date
                         var startString = NSDateFormatter.localizedStringFromDate(start.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
                         eventString += "\(startString) - \(event.summary)\n"
                         self.eventList.append("\(startString) - \(event.summary)")
-                        
+                        */
                     }
                 }
-                else {
-                    //eventString = "No upcoming events found"
-                }
-                //print(eventString)
                 block(true)
             })
         }
@@ -117,7 +118,7 @@ class GoogleCalendarClient: NSObject {
     /// Add an event to the Google Calendar of the currently authorized Google user.
     /// (probably should return something...)
     func addEvent(block: ()) {
-        var newEvent: GTLCalendarEvent = GTLCalendarEvent()
+        var newEvent = GTLCalendarEvent()
         newEvent.summary = "Event summary: You will do stuff except everything"
         newEvent.descriptionProperty = "Event description: This event shall be fun"
         
