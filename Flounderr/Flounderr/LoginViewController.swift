@@ -61,7 +61,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
         PFUser.logInWithUsernameInBackground(loginUsernameTextField.text!, password: loginPasswordTextField.text!) { (user: PFUser?, error: NSError?) in
             if let user = user {
                 print("\nInside LoginViewController: Yay! Login is successful\n")
-                self.performSegueWithIdentifier("signUpSegue", sender: nil)
+                self.performSegueWithIdentifier("SyncGoogleSegue", sender: nil)
             }
             else {
                 print("\nInside LoginViewController: Logging in failed!\n")
@@ -107,7 +107,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
                     print("\nInside LoginViewController: Yay! Signing up was successful\n")
                     self.loginErrorLabel.text = ""
                     self.signUpErrorLabel.text = ""
-                    self.performSegueWithIdentifier("signUpSegue", sender: nil)
+                    self.performSegueWithIdentifier("SyncGoogleSegue", sender: nil)
                 }
                 else {
                     let errorCode = error!.code

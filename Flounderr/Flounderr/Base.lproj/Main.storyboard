@@ -332,7 +332,7 @@
                         <outlet property="signUpPasswordTextField" destination="lZg-9b-jT4" id="Xee-Wf-s7Q"/>
                         <outlet property="signUpUsernameTextField" destination="ly9-eT-wYD" id="tkO-NL-0E1"/>
                         <outlet property="signUpView" destination="gLI-Na-aVN" id="8Pr-hC-vgi"/>
-                        <segue destination="sK4-1u-aPq" kind="modal" identifier="signUpSegue" id="3SK-5W-xFE"/>
+                        <segue destination="sK4-1u-aPq" kind="modal" identifier="SyncGoogleSegue" id="3SK-5W-xFE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Scp-tG-yGH" userLabel="First Responder" sceneMemberID="firstResponder"/>

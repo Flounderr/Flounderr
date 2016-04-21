@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class SyncGoogleCalendarViewController: UIViewController {
     //var googleClient: GoogleCalendarClient = GoogleCalendarClient()
@@ -19,21 +20,13 @@ class SyncGoogleCalendarViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     @IBAction func onGoogleCalendarSync(sender: AnyObject) {
-        /*
-        if User.currentUser!.isUserGoogleAuthorized() {
-            presentViewController(User.currentUser!.loginThroughGoogleCalendar(self, segueName: "calendarSegue"), animated: true, completion: nil)
-        }
-        else {
-            performSegueWithIdentifier("calendarSegue", sender: nil)
-        }
-        */
+        performSegueWithIdentifier("calendarSegue", sender: nil)
     }
     @IBAction func onSkip(sender: AnyObject) {
         performSegueWithIdentifier("calendarSegue", sender: nil)
