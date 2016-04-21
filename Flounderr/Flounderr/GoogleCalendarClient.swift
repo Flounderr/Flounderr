@@ -18,6 +18,8 @@ class GoogleCalendarClient: NSObject {
     private let scopes = [kGTLAuthScopeCalendar]
     private let service = GTLServiceCalendar()
     
+    var eventList = [String]()
+    
     /// Authorize Google
     ///
     /// - parameter currView: The current view within the app where the Google authorization page should be shown
@@ -71,9 +73,8 @@ class GoogleCalendarClient: NSObject {
     
     /// Fetch events for the currently authorized Google user.
     /// - returns: [NSDictionary]
-    func fetchEvents() -> String {
+    func fetchEvents(block: (Bool) -> Void) {
         // Only fetch event if the user was successfully authorized
-        var temp = ""
         if let authorizer = service.authorizer,
             canAuth = authorizer.canAuthorize where canAuth {
             let query = GTLQueryCalendar.queryForEventsListWithCalendarId("primary")
@@ -96,24 +97,26 @@ class GoogleCalendarClient: NSObject {
                         var start: GTLDateTime! = event.start.dateTime ?? event.start.date
                         var startString = NSDateFormatter.localizedStringFromDate(start.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
                         eventString += "\(startString) - \(event.summary)\n"
+                        self.eventList.append("\(startString) - \(event.summary)")
+                        
                     }
                 }
                 else {
-                    eventString = "No upcoming events found"
+                    //eventString = "No upcoming events found"
                 }
-                print(eventString)
-                temp = temp + "hello!"
+                //print(eventString)
+                block(true)
             })
         }
         else {
             print("Can't fetch event because authorization wasn't successful.")
+            block(false)
         }
-        return temp
     }
     
     /// Add an event to the Google Calendar of the currently authorized Google user.
     /// (probably should return something...)
-    func addEvent() {
+    func addEvent(block: ()) {
         var newEvent: GTLCalendarEvent = GTLCalendarEvent()
         newEvent.summary = "Event summary: You will do stuff except everything"
         newEvent.descriptionProperty = "Event description: This event shall be fun"

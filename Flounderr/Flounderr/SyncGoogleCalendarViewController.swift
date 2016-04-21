@@ -26,7 +26,10 @@ class SyncGoogleCalendarViewController: UIViewController {
     }
     
     @IBAction func onGoogleCalendarSync(sender: AnyObject) {
-        performSegueWithIdentifier("calendarSegue", sender: nil)
+        presentViewController(GoogleCalendarClient.sharedInstance.authorize(self, segueName: "calendarSegue"), animated: true) { 
+            print("Showing Google authentication page successful!")
+        }
+        //performSegueWithIdentifier("calendarSegue", sender: nil)
     }
     @IBAction func onSkip(sender: AnyObject) {
         performSegueWithIdentifier("calendarSegue", sender: nil)

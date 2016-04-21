@@ -22,16 +22,22 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
         // Do any additional setup after loading the view.
         menuView.delegate = self
         calendarView.delegate = self
+        
         if GoogleCalendarClient.sharedInstance.isUserAuthorized() {
-            GoogleCalendarClient.sharedInstance.addEvent()
-            let temp = GoogleCalendarClient.sharedInstance.fetchEvents()
-            print("temp = \(temp)")
+            //GoogleCalendarClient.sharedInstance.addEvent()
             
+            GoogleCalendarClient.sharedInstance.fetchEvents({ (success: Bool) in
+                if success {
+                    print("\n\nHey!!!!!!!\n\n")
+                }
+                else {
+                    print("\n\nBooHooooooo\n\n")
+                }
+            })
         }
         else {
             print("User doesn't have a google account!")
         }
-        
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -52,9 +58,10 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
     
     @IBAction func onLogout(sender: AnyObject) {
         print("Logout called!")
-        //ParseUserClient.sharedInstance.logout()
         PFUser.logOut()
-        self.performSegueWithIdentifier("unwindToWelcomeViewController", sender: nil)
+        GoogleCalendarClient.sharedInstance.deauthorize()
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("UserDidLogout", object: nil)
     }
     
 

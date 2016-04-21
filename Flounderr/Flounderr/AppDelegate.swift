@@ -29,7 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let vc = storyboard.instantiateViewControllerWithIdentifier("CalendarNavigationViewController")
             window?.rootViewController = vc
         }
+        /*
         else {
+            let vc = storyboard.instantiateInitialViewController()
+            self.window?.rootViewController = vc
+        }
+        */
+        NSNotificationCenter.defaultCenter().addObserverForName("UserDidLogout", object: nil, queue: NSOperationQueue.mainQueue()) { (NSNotification) -> Void in
             let vc = storyboard.instantiateInitialViewController()
             self.window?.rootViewController = vc
         }
