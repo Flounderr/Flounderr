@@ -16,7 +16,6 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     
-    var eventIndex: Int = 0
     var eventList = NSMutableArray()
     
     override func viewDidLoad() {
@@ -78,21 +77,16 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
             return true
         }
          */
-        
-        print("\neventIndex = \(eventIndex), eventList.count = \(eventList.count)\n")
-        
-        if eventList.count > 0 && eventIndex < eventList.count {
-            /*
-            let potentialEventDate = CVDate(date: (eventList.objectAtIndex(eventIndex) as! NSDictionary)["date"] as! NSDate)
-            
-            print("\n\(dayView.date.month) ?= \(potentialEventDate.month)\n")
-            print("\(dayView.date.day) ?= \(potentialEventDate.day)\n")
-            print("\(dayView.date.year) ?= \(potentialEventDate.year)\n")
-            */
+        if eventList.count > 0 {
             for element in eventList {
                 var currElement = element as! NSMutableDictionary
                 if !(currElement["writtenToCalendar"] as! Bool) {
                     let potentialEventDate = CVDate(date: (currElement["date"] as! NSDate))
+                    
+                    print("\n\(dayView.date.month) ?= \(potentialEventDate.month)\n")
+                    print("\(dayView.date.day) ?= \(potentialEventDate.day)\n")
+                    print("\(dayView.date.year) ?= \(potentialEventDate.year)\n")
+                    
                     if dayView.date.month == potentialEventDate.month &&
                         dayView.date.day == potentialEventDate.day &&
                         dayView.date.year == potentialEventDate.year {
@@ -121,7 +115,10 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
         // Dispose of any resources that can be recreated.
     }
     func reloadCalendar() {
-        eventIndex = 0
+        for element in eventList {
+            var currElement = element as! NSMutableDictionary
+            currElement.setValue(false, forKey: "writtenToCalendar")
+        }
         if let cc = self.calendarView.contentController as? CVCalendarMonthContentViewController {
             cc.refreshPresentedMonth()
         }

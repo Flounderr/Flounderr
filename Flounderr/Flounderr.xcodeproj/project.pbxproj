@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E2669971CC9A93600A3F685 /* UserEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2669961CC9A93600A3F685 /* UserEvents.swift */; };
 		4E5CE0A91CAB4958008101F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CE0A81CAB4958008101F7 /* AppDelegate.swift */; };
 		4E5CE0AB1CAB4958008101F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5CE0AA1CAB4958008101F7 /* ViewController.swift */; };
 		4E5CE0AE1CAB4958008101F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E5CE0AC1CAB4958008101F7 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		2EB2278E426CCDD1E8AE216C /* Pods-Flounderr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flounderr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flounderr/Pods-Flounderr.release.xcconfig"; sourceTree = "<group>"; };
+		4E2669961CC9A93600A3F685 /* UserEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEvents.swift; sourceTree = "<group>"; };
 		4E5CE0A51CAB4958008101F7 /* Flounderr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flounderr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E5CE0A81CAB4958008101F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E5CE0AA1CAB4958008101F7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 		4E4F50F71CBEAF3600976112 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4E2669961CC9A93600A3F685 /* UserEvents.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				4E5CE0AB1CAB4958008101F7 /* ViewController.swift in Sources */,
 				4E5CE0C81CAB54E7008101F7 /* WelcomeViewController.swift in Sources */,
 				4E76A54D1CACD9D20039011C /* CameraViewController.swift in Sources */,
+				4E2669971CC9A93600A3F685 /* UserEvents.swift in Sources */,
 				4EE289181CBB526600020B93 /* GoogleCalendarClient.swift in Sources */,
 				4E5CE0C11CAB4AEB008101F7 /* GTLCalendar_Sources.m in Sources */,
 				4E76A54F1CACEBCD0039011C /* EventDetailViewController.swift in Sources */,

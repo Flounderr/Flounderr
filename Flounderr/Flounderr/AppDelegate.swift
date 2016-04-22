@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if PFUser.currentUser() != nil {
             print("\nThere exists a current user!\n")
+            GoogleCalendarClient.sharedInstance.updateServiceAuthorizer()
             let vc = storyboard.instantiateViewControllerWithIdentifier("CalendarNavigationViewController")
             window?.rootViewController = vc
         }

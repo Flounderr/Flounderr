@@ -51,7 +51,9 @@ class GoogleCalendarClient: NSObject {
             }
             // Authorize the user
             self.service.authorizer = authResult
-            print("Authorization successful!")
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject(authResult.persistenceResponseString(), forKey: "GoogleCalendarAuthorizer")
+            print("\npersistenceString in authorize = \(authResult.persistenceResponseString())\n")
             // If the segue identifier was provided,
             // first dismiss the Google authorization page, then perform segue
             if segueName != nil {
@@ -69,50 +71,52 @@ class GoogleCalendarClient: NSObject {
     /// Deauthorize Google
     func deauthorize() {
         service.authorizer = nil
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.removeObjectForKey("GoogleCalendarAuthorizer")
+        //defaults.setObject(nil, forKey: "GoogleCalendarAuthorizer")
     }
     
     /// Fetch events for the currently authorized Google user.
     /// - returns: [NSDictionary]
     func fetchEvents(block: (Bool) -> Void) {
-        // Only fetch event if the user was successfully authorized
-        if let authorizer = service.authorizer,
-            canAuth = authorizer.canAuthorize where canAuth {
-            let query = GTLQueryCalendar.queryForEventsListWithCalendarId("primary")
-            query.maxResults = 15 // Only fetch 15 events
-            query.timeMin = GTLDateTime(date: NSDate(), timeZone: NSTimeZone.localTimeZone()) // Set the min date to today
-            query.singleEvents = true
-            query.orderBy = kGTLCalendarOrderByStartTime
-            service.executeQuery(query, completionHandler: {
-                                            (ticekt: GTLServiceTicket!,
-                                            response: AnyObject!,
-                                            error: NSError!) in
-                print("\n\nEVENTS!!!!!!!!!!!!!!!!!\n\n")
-                if error != nil {
-                    print("Event fetching Error: ", error.localizedDescription)
-                    return
-                }
-                if let events = response.items() where !events.isEmpty {
-                    for event in events as! [GTLCalendarEvent] {
-                        let startDate: NSDate! = event.start.dateTime.date ?? event.start.date.date
-                        let eventSummary = event.summary
-                        
-                        let anEvent: NSDictionary = ["date":startDate, "description":eventSummary]
-                        self.eventList.addObject(anEvent)
-                        /*
-                        var start: GTLDateTime! = event.start.dateTime ?? event.start.date
-                        var startString = NSDateFormatter.localizedStringFromDate(start.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
-                        eventString += "\(startString) - \(event.summary)\n"
-                        self.eventList.append("\(startString) - \(event.summary)")
-                        */
-                    }
+        let query = GTLQueryCalendar.queryForEventsListWithCalendarId("primary")
+        query.maxResults = 15 // Only fetch 15 events
+        query.timeMin = GTLDateTime(date: NSDate(), timeZone: NSTimeZone.localTimeZone()) // Set the min date to today
+        query.singleEvents = true
+        query.orderBy = kGTLCalendarOrderByStartTime
+        
+        service.executeQuery(query, completionHandler: {
+            (ticekt: GTLServiceTicket!,
+            response: AnyObject!,
+            error: NSError!) in
+            print("\n\nEVENTS!!!!!!!!!!!!!!!!!\n\n")
+            if error != nil {
+                print("Event fetching Error: ", error.localizedDescription)
+                block(false)
+            }
+            else if let events = response.items() where !(events.isEmpty) {
+                for event in events as! [GTLCalendarEvent] {
+                    let startDate: NSDate! = event.start.dateTime.date ?? event.start.date.date
+                    let eventSummary = event.summary
+                    
+                    let anEvent: NSDictionary = ["date":startDate, "description":eventSummary]
+                    self.eventList.addObject(anEvent)
+                    /*
+                     var start: GTLDateTime! = event.start.dateTime ?? event.start.date
+                     var startString = NSDateFormatter.localizedStringFromDate(start.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+                     eventString += "\(startString) - \(event.summary)\n"
+                     self.eventList.append("\(startString) - \(event.summary)")
+                     */
                 }
                 block(true)
-            })
+            }
+        })
+        /*
+        if let authorizer = service.authorizer,
+            canAuth = authorizer.canAuthorize where canAuth {
+            
         }
-        else {
-            print("Can't fetch event because authorization wasn't successful.")
-            block(false)
-        }
+        */
     }
     
     /// Add an event to the Google Calendar of the currently authorized Google user.
@@ -147,9 +151,30 @@ class GoogleCalendarClient: NSObject {
     /// Checks if there app has an authorized Google user.
     /// - returns: Bool
     func isUserAuthorized() -> Bool {
+        /*
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.objectForKey("GoogleCalendarAuthorizer") != nil
+        */
+        
         if service.authorizer == nil {
             return false
         }
         return service.authorizer.canAuthorize!
     }
+    func updateServiceAuthorizer() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let persistanceString = defaults.objectForKey("GoogleCalendarAuthorizer") as? String {
+            //print("\npersistenceString inside updateServiceAuthorizer = \(persistanceString)\n")
+            let auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychainForName(kKeychainItemName, clientID: kClientID, clientSecret: nil)
+            auth.setKeysForPersistenceResponseString(persistanceString)
+            service.authorizer = auth
+            print("service.authorizer exists!!")
+        }
+        else {
+            service.authorizer = nil
+            print("service.authorizer is nil!")
+        }
+        //defaults.objectForKey("GoogleCalendarAuthorizer") != nil
+    }
+    
 }
