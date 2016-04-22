@@ -20,19 +20,19 @@ class SyncGoogleCalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*
-        requestAccessToCalendar { (success: Bool) in
-            if success {
-                print("Yay!")
-            }
-            else {
-                PFUser.logOut()
-                GoogleCalendarClient.sharedInstance.deauthorize()
-                
-                NSNotificationCenter.defaultCenter().postNotificationName("UserDidLogout", object: nil)
-            }
+        let status = EKEventStore.authorizationStatusForEntityType(EKEntityType.Event)
+        
+        switch (status) {
+        case EKAuthorizationStatus.NotDetermined:
+            requestAccessToCalendar()
+            break
+        case EKAuthorizationStatus.Authorized:
+            // Do nothing?
+            break
+        case EKAuthorizationStatus.Restricted, EKAuthorizationStatus.Denied:
+            print("We need permission!")
+            break
         }
-        */
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -51,14 +51,14 @@ class SyncGoogleCalendarViewController: UIViewController {
         // Ask permission to access eventkit
         performSegueWithIdentifier("calendarSegue", sender: nil)
     }
-    func requestAccessToCalendar(block: (Bool)->Void) {
+    func requestAccessToCalendar() {
         if EKEventStore.authorizationStatusForEntityType(EKEntityType.Event) != EKAuthorizationStatus.Authorized {
             eventStore.requestAccessToEntityType(EKEntityType.Event, completion: { (accessGranted: Bool, error: NSError?) in
                 if accessGranted {
-                    block(true)
+                    print("Calendar access granted!")
                 }
                 else {
-                    block(false)
+                    print("Calendar access denied!")
                 }
             })
         }

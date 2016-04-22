@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import Parse
 
 class EventDetailViewController: UIViewController {
     var recognizedText: String!
@@ -28,6 +29,9 @@ class EventDetailViewController: UIViewController {
     @IBOutlet weak var dateDatePicker: UIDatePicker!
     @IBOutlet weak var timeDatePicker: UIDatePicker!
     @IBOutlet weak var eventNameTextField: UITextField!
+    @IBOutlet weak var locationTextField: UITextField!
+    
+    
     
     @IBOutlet weak var addEventButton: UIButton!
     
@@ -87,6 +91,12 @@ class EventDetailViewController: UIViewController {
                 print("Adding event failed...")
             }
         }
+        
+        let event = "\(PFUser.currentUser()!.username!)@\(eventNameTextField.text!)@\(dateFormatter.stringFromDate(eventDate!))@\(locationTextField.text!)\n"
+        
+        //print(event)
+        
+        UserMedia.postUserPost(event, user: PFUser.currentUser()! ,completion: nil)
     }
     /*
     // MARK: - Navigation

@@ -24,6 +24,11 @@
 		4E76A54B1CACD4F00039011C /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 4E76A54A1CACD4F00039011C /* tessdata */; };
 		4E76A54D1CACD9D20039011C /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E76A54C1CACD9D20039011C /* CameraViewController.swift */; };
 		4E76A54F1CACEBCD0039011C /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E76A54E1CACEBCD0039011C /* EventDetailViewController.swift */; };
+		4E990ED21CCAB52B00021B83 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E990ED11CCAB52B00021B83 /* HomeViewController.swift */; };
+		4E990ED51CCAB75800021B83 /* PostViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E990ED41CCAB75800021B83 /* PostViewTableViewCell.swift */; };
+		4E990ED71CCAB7FC00021B83 /* UserMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E990ED61CCAB7FC00021B83 /* UserMedia.swift */; };
+		4E990ED91CCABC7100021B83 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E990ED81CCABC7100021B83 /* InboxViewController.swift */; };
+		4E990EDC1CCABCA900021B83 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E990EDB1CCABCA900021B83 /* MessageTableViewCell.swift */; };
 		4EE289111CBB41BC00020B93 /* SyncGoogleCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE289101CBB41BC00020B93 /* SyncGoogleCalendarViewController.swift */; };
 		4EE289181CBB526600020B93 /* GoogleCalendarClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE289171CBB526600020B93 /* GoogleCalendarClient.swift */; };
 		E3FB02719820A17D6323CAFA /* Pods_Flounderr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73E84F15620BE9DFEA4F7A3 /* Pods_Flounderr.framework */; };
@@ -52,6 +57,11 @@
 		4E76A54A1CACD4F00039011C /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		4E76A54C1CACD9D20039011C /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		4E76A54E1CACEBCD0039011C /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		4E990ED11CCAB52B00021B83 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4E990ED41CCAB75800021B83 /* PostViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewTableViewCell.swift; sourceTree = "<group>"; };
+		4E990ED61CCAB7FC00021B83 /* UserMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMedia.swift; sourceTree = "<group>"; };
+		4E990ED81CCABC7100021B83 /* InboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
+		4E990EDB1CCABCA900021B83 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		4EE289101CBB41BC00020B93 /* SyncGoogleCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncGoogleCalendarViewController.swift; sourceTree = "<group>"; };
 		4EE289171CBB526600020B93 /* GoogleCalendarClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCalendarClient.swift; sourceTree = "<group>"; };
 		B73E84F15620BE9DFEA4F7A3 /* Pods_Flounderr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flounderr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				4E2669961CC9A93600A3F685 /* UserEvents.swift */,
+				4E990ED61CCAB7FC00021B83 /* UserMedia.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -104,6 +115,7 @@
 		4E5CE0A71CAB4958008101F7 /* Flounderr */ = {
 			isa = PBXGroup;
 			children = (
+				4E990EDA1CCABC8800021B83 /* Cells */,
 				4E4F50F71CBEAF3600976112 /* Models */,
 				4EE289141CBB452200020B93 /* API */,
 				4E76A54A1CACD4F00039011C /* tessdata */,
@@ -145,6 +157,8 @@
 				4E5CE0C51CAB54BE008101F7 /* CalendarViewController.swift */,
 				4E76A54C1CACD9D20039011C /* CameraViewController.swift */,
 				4E76A54E1CACEBCD0039011C /* EventDetailViewController.swift */,
+				4E990ED11CCAB52B00021B83 /* HomeViewController.swift */,
+				4E990ED81CCABC7100021B83 /* InboxViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -156,6 +170,15 @@
 				4E5CE0B11CAB4958008101F7 /* LaunchScreen.storyboard */,
 			);
 			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		4E990EDA1CCABC8800021B83 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4E990ED41CCAB75800021B83 /* PostViewTableViewCell.swift */,
+				4E990EDB1CCABCA900021B83 /* MessageTableViewCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		4EE289141CBB452200020B93 /* API */ = {
@@ -319,7 +342,12 @@
 				4E5CE0C11CAB4AEB008101F7 /* GTLCalendar_Sources.m in Sources */,
 				4E76A54F1CACEBCD0039011C /* EventDetailViewController.swift in Sources */,
 				4EE289111CBB41BC00020B93 /* SyncGoogleCalendarViewController.swift in Sources */,
+				4E990ED91CCABC7100021B83 /* InboxViewController.swift in Sources */,
+				4E990ED51CCAB75800021B83 /* PostViewTableViewCell.swift in Sources */,
 				4E5CE0A91CAB4958008101F7 /* AppDelegate.swift in Sources */,
+				4E990EDC1CCABCA900021B83 /* MessageTableViewCell.swift in Sources */,
+				4E990ED21CCAB52B00021B83 /* HomeViewController.swift in Sources */,
+				4E990ED71CCAB7FC00021B83 /* UserMedia.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

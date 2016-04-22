@@ -9,6 +9,7 @@
 import UIKit
 import CVCalendar
 import Parse
+import EventKit
 
 class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
@@ -31,6 +32,10 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
         
         print("\nviewWillAppear() for CalendarViewController called!\n")
         
+        let defaults = NSUserDefaults.standardUserDefaults()
+        var eventList = NSMutableArray()
+        defaults.setObject(eventList, forKey: "eventLists")
+        
         loadInitialEventData()
     }
     override func viewDidLayoutSubviews() {
@@ -40,6 +45,9 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
         menuView.commitMenuViewUpdate()
     }
     func loadInitialEventData() {
+        if EKEventStore.authorizationStatusForEntityType(EKEntityType.Event) == EKAuthorizationStatus.Authorized {
+            
+        }
         if GoogleCalendarClient.sharedInstance.isUserAuthorized() {
             GoogleCalendarClient.sharedInstance.fetchEvents({ (success: Bool) in
                 if success {
@@ -83,9 +91,9 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
                 if !(currElement["writtenToCalendar"] as! Bool) {
                     let potentialEventDate = CVDate(date: (currElement["date"] as! NSDate))
                     
-                    print("\n\(dayView.date.month) ?= \(potentialEventDate.month)\n")
-                    print("\(dayView.date.day) ?= \(potentialEventDate.day)\n")
-                    print("\(dayView.date.year) ?= \(potentialEventDate.year)\n")
+                    //print("\n\(dayView.date.month) ?= \(potentialEventDate.month)\n")
+                    //print("\(dayView.date.day) ?= \(potentialEventDate.day)\n")
+                    //print("\(dayView.date.year) ?= \(potentialEventDate.year)\n")
                     
                     if dayView.date.month == potentialEventDate.month &&
                         dayView.date.day == potentialEventDate.day &&
