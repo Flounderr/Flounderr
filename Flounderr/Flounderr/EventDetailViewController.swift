@@ -67,7 +67,12 @@ class EventDetailViewController: UIViewController {
     
     @IBAction func onAddEvent(sender: AnyObject) {
         if (eventNameTextField.text ?? "").isEmpty {
-            print("Event name is required!")
+            var alert = UIAlertController(title: "Error", message: "An event name is required!", preferredStyle: .Alert)
+            let cancel = UIAlertAction(title: "Ok", style: .Cancel) { (action) -> Void in
+                
+            }
+            alert.addAction(cancel)
+            self.presentViewController(alert, animated: true, completion: nil)
             return
         }
         let dateFormatter = NSDateFormatter()
@@ -82,13 +87,14 @@ class EventDetailViewController: UIViewController {
         dateComponents.minute = timeComponents.minute
         
         let eventDate = calendar.dateFromComponents(dateComponents)
-        
-        GoogleCalendarClient.sharedInstance.addEvent(eventDate!, eventDescription: eventNameTextField.text!) { (success: Bool) in
-            if success {
-                self.performSegueWithIdentifier("reloadCalendarSegue", sender: nil)
-            }
-            else {
-                print("Adding event failed...")
+        if GoogleCalendarClient.sharedInstance.isUserAuthorized() {
+            GoogleCalendarClient.sharedInstance.addEvent(eventDate!, eventDescription: eventNameTextField.text!) { (success: Bool) in
+                if success {
+                    self.performSegueWithIdentifier("reloadCalendarSegue", sender: nil)
+                }
+                else {
+                    print("Adding event failed...")
+                }
             }
         }
         
@@ -97,6 +103,7 @@ class EventDetailViewController: UIViewController {
         //print(event)
         
         UserMedia.postUserPost(event, user: PFUser.currentUser()! ,completion: nil)
+        self.performSegueWithIdentifier("reloadCalendarSegue", sender: nil)
     }
     /*
     // MARK: - Navigation
