@@ -6,14 +6,14 @@ Flounder is an app which allows users to click pictures of flyers and detects th
 
  - [x] Users can log in 
  - [x] Users can take a picture of a flyer
- - [x] App can detect the date and event name on the flyer as well as the location with some accuracy
- - [ ] Users can edit the event details after the details are detected
- - [ ] App adds the event to the calendar and google calendar
+ - [x] App can detect the date on the flyer as well as the location with some accuracy
+ - [x] Users can edit the event details after the details are detected
+ - [x] App adds the event to the calendar and google calendar
 
 -The following are **optional** functionalities
 
- - [ ] Ability to post events to the app
- - [ ] Carpool button allows user to send carpool requests to event poster
+ - [x] Ability to post events to the app
+ - [x] Carpool button allows user to send carpool requests to event poster
  - [ ] User can choose how many carpool requests they'd like to allow
  - [ ] Carpool button greys out after 1-5 carpool requests are accepted
 
